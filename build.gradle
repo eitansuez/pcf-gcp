@@ -9,3 +9,11 @@ buildscript {
 }
 
 apply plugin: 'org.asciidoctor.convert'
+
+asciidoctor {
+  backends 'html5'
+  sourceDir file('docs')
+  sources {
+    include 'index.adoc'
+  }
+}

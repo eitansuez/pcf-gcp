@@ -1,0 +1,13 @@
+= Gemfire Developer -- Lab Instructions
+Eitan Suez <esuez@pivotal.io>
+v0.1, 2017:  PCF Administration (GCP)
+:doctype: book
+:sectnums:
+:toc:
+:icons: font
+:experimental:
+:source-highlighter: highlightjs
+
+include::requirements.adoc[]
+include::opsmgr.adoc[]
+include::boshdirector.adoc[]
