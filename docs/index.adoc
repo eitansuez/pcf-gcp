@@ -4,6 +4,7 @@ v0.1, 2017:  GCP-specific Lab Instructions
 :doctype: book
 :toc: left
 :sectnums:
+:linkattrs:
 :source-highlighter: highlightjs
 :project_id: jsmith-project
 :username: jsmith
@@ -11,5 +12,7 @@ v0.1, 2017:  GCP-specific Lab Instructions
 :key_json_filename: terraform.key.json
 
 include::requirements.adoc[]
+
 include::opsmgr.adoc[]
+
 include::boshdirector.adoc[]

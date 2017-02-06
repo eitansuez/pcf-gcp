@@ -1,4 +1,4 @@
-= Terraforming GCP
+== Terraforming GCP
 
 Welcome!
 
@@ -9,7 +9,7 @@ Your instructor has prepared the following on your behalf:
 - A VM Image with the software necessary to install Cloud Foundry
 
 
-== Logging in to GCP
+=== Logging in to GCP
 
 - in a browser, navigate to the https://console.cloud.google.com/[GCP console] and log in.  Next, navigate to your project.
 
@@ -30,7 +30,7 @@ gcloud init
 
 _TBD: insert instructions for logging in to gcloud project_
 
-== Initial Configuration
+=== Initial Configuration
 
 . setup project-wide ssh key:
   the instructions to setup a project-wide ssh key are part of the pivotal official documentation, and available here
@@ -51,7 +51,7 @@ NOTE: if you prefer, you can follow along here to create the account and downloa
 . enable access to three GCP APIs: Resource Mgr API, Cloud DNS API, Identity and Access Management API.
    See http://docs.pivotal.io/pivotalcf/customizing/gcp-prepare-env.html#enable_compute_resource_api[these instructions] for how to do this for the Resource Manager API. Don't forget to also enable the Google Cloud DNS API, and Google Identity and Access Management API.
 
-== Prepare and run terraform scripts:
+=== Prepare and run terraform scripts:
 
 Below is a distillation of the instructions from the https://github.com/pivotal-cf/terraforming-gcp[terraforming-gcp project's readme file]:
 
@@ -80,7 +80,7 @@ You'll need to supply the following:
 . run `terraform apply` and watch it create the IAAS foundation that will be used to install Cloud Foundry.
 
 
-== Validate Installation
+=== Validate Installation
 
 The terraform scripts create the infrastructure necessary to proceed with the installation of the bosh director, the elastic runtime tile, and PCF services tiles, which includes: a network, three subnetworks, static ip addresses, load balancers, firewall rules, routes, backend services, ssl cert, forwarding rules, health checks, instance groups, ops manager image, ops manager vm instance, ops manager service account, buckets in google storage for blobstores, hosted zone for env-name + dns suffix, and all necessary dns entries within the hosted zone.
 

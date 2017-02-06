@@ -1,8 +1,8 @@
-= Partner Requirements
+== Partner Requirements
 
 Partners furnish each student (or pair of students) the following:
 
-. a GCP project with access credentials, and link:quota.adoc[quota] set appropriately to deploy PCF.
+. a GCP project with access credentials, and link:ref/quota{outfilesuffix}[quota] set appropriately to deploy PCF.
 
 . a registered domain name, from which subdomains can be created for each student.
   For example, assuming the domain name `example.org`, and a student named John Smith
@@ -10,7 +10,7 @@ Partners furnish each student (or pair of students) the following:
 +
 NOTE: instructors will have to create an NS record for each student subdomain
 
-. a private key and certificate pair to be used in conjunction with SSL configuration of the CF installation.  See link:keys.adoc[these instructions].
+. a private key and certificate pair to be used in conjunction with SSL configuration of the CF installation.  See link:ref/keys{outfilesuffix}[these instructions].
 
 . a VM image with these tools pre-installed:
  - https://releases.hashicorp.com/terraform/0.8.4/[Terraform v0.8.4]

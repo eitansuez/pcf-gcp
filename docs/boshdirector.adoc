@@ -1,4 +1,4 @@
-= Configure and install BOSH Director
+== Configure and install BOSH Director
 
 The terraform scripts we ran in the last lab created the Ops Manager VM.
 
@@ -9,7 +9,7 @@ The two main tasks we will accomplish in this lab are:
 
 Setting up the BOSH Director is a prerequisite step to installing Cloud Foundry.
 
-== Instructions
+=== Instructions
 
 . The ops manager runs a web server that is accessible at `pcf.{env_name}.{dns_suffix}`.
   Open a web browser and visit that page.
@@ -31,7 +31,7 @@ In the Google Cloud Console, visit the _compute engine -> vm instances_ section 
 
 Congratulations, you have now deployed the BOSH Director.
 
-== Post-Installation Activities:
+=== Post-Installation Activities:
 
 . in the Ops Manager, select the GCP _tile_.  We need to retrieve some information:
 .. the Ops Manager IP address: navigate to the _Status_ tab, note the IP address for the Ops Manager Director
