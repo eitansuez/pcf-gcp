@@ -1,9 +1,4 @@
 = Terraforming GCP
-:project_id: jsmith-project
-:domain_name: example.org
-:username: jsmith
-:key_json_filename: terraform.key.json
-:source-highlighter: highlightjs
 
 Welcome!
 

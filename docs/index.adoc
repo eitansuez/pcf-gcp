@@ -2,11 +2,13 @@
 Eitan Suez <esuez@pivotal.io>
 v0.1, 2017:  GCP-specific Lab Instructions
 :doctype: book
+:toc: left
 :sectnums:
-:toc:
-:icons: font
-:experimental:
 :source-highlighter: highlightjs
+:project_id: jsmith-project
+:username: jsmith
+:domain_name: example.org
+:key_json_filename: terraform.key.json
 
 include::requirements.adoc[]
 include::opsmgr.adoc[]

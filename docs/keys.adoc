@@ -1,9 +1,4 @@
 = Generating SSL Private Key and Certificate for Student
-Eitan Suez <esuez@pivotal.io>
-:source-highlighter: highlightjs
-:domain_name: example.org
-:username: jsmith
-
 
 Assuming the domain name {domain_name} and username {username}, then:
 

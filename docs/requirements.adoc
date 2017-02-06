@@ -1,5 +1,4 @@
 = Partner Requirements
-:linkattrs:
 
 Partners furnish each student (or pair of students) the following:
 
