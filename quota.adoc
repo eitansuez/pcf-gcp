@@ -1,0 +1,25 @@
+= Suggested Quota
+
+The following limits were derived from the quotas listed https://github.com/c0-ops/landingpage/blob/master/gcp/refarch-main.md[here] and the quota for a GCP account used to deploy PCF.
+
+[cols="<,>",options="header"]
+|===
+| Resource | Suggested Min Limit
+| CPUs *Region Specific* |100
+| Firewall Rules |20
+| Forwarding Rules |15
+| Global Forwarding Rules |5
+| Global Backend Services |5
+| Health Checks |10
+| Images |10
+| Static IP Addresses *Region Specific* |5
+| IP Addresses Global |5
+| IP Addresses *Region Specific* |50
+| Networks |5
+| Subnetworks |20
+| Routes |20
+| Target Pools |10
+| Target HTTP Proxies Global |5
+| Target HTTPS Proxies Global |5
+| Total persistent disk reserved (GB) *Region Specific* | 10,000
+|===

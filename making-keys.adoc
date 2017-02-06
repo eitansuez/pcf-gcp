@@ -1,0 +1,46 @@
+= Generating SSL Private Key and Certificate for Student
+Eitan Suez <esuez@pivotal.io>
+:source-highlighter: highlightjs
+:domain_name: example.org
+:username: jsmith
+
+
+Assuming the domain name {domain_name} and username {username}, then:
+
+1. create a private key
++
+[source,bash,subs="attributes+"]
+----
+openssl genrsa -out {username}-key.pem 2048
+----
++
+2. create a certificate
++
+[source,bash,subs="attributes+"]
+----
+openssl req -x509 -sha256 -new \
+  -key {username}-key.pem \
+  -out {username}-cert.pem \
+  -subj "/C=US/ST=Texas/L=Austin/O=Pivotal, Inc./OU=Education/CN=*.{username}.{domain_name}" \
+  -days 365 \
+  -config pcf-san.cnf
+----
++
+..where `pcf-san.cnf` is an adaptation of `/usr/local/etc/openssl/openssl.cnf` with the following modifications:
++
+[source,diff,subs="attributes+"]
+----
+66c66
+< # copy_extensions = copy
+---
+> copy_extensions = copy
+223a224,229
+> [alt_names]
+> DNS.1 = *.sys.{username}.{domain_name}
+> DNS.2 = *.login.sys.{username}.{domain_name}
+> DNS.3 = *.uaa.sys.{username}.{domain_name}
+> DNS.4 = *.apps.{username}.{domain_name}
+>
+224a231
+> subjectAltName = @alt_names
+----
