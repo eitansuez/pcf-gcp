@@ -11,7 +11,7 @@ Your instructor has prepared the following on your behalf:
 
 === Logging in to GCP
 
-- in a browser, navigate to the https://console.cloud.google.com/[GCP console] and log in.  Next, navigate to your project by selecting your project name from the projects "dropdown" in the page header.
+- in a browser, navigate to the https://console.cloud.google.com/[GCP console^] and log in.  Next, navigate to your project by selecting your project name from the projects "dropdown" in the page header.
 
 - create instance of image: locate image, create instance
 +
@@ -35,9 +35,8 @@ _TBD: insert instructions for logging in to gcloud project_
 === Initial Configuration
 
 . setup project-wide ssh key:
-  the instructions to setup a project-wide ssh key are part of the pivotal official documentation, and available here
-  (please follow step 4 only):
-    http://docs.pivotal.io/pivotalcf/customizing/gcp-prepare-env.html#keys
+  the instructions to setup a project-wide ssh key are part of the pivotal official documentation, and available http://docs.pivotal.io/pivotalcf/customizing/gcp-prepare-env.html#keys[here^].  _Please follow step 4 only_.
+
 +
 . setup a service account and download keyfile:
 +
@@ -56,14 +55,14 @@ gcloud iam service-accounts keys create "{key_json_filename}" --iam-account "ter
 gcloud projects add-iam-policy-binding {project_id} --member 'serviceAccount:terraform-service-account@{project_id}.iam.gserviceaccount.com' --role 'roles/editor'
 ----
 +
-NOTE: if you prefer, you can follow along here to create the account and download the key via the google cloud console web-based ui: http://docs.pivotal.io/pivotalcf/customizing/gcp-prepare-env.html#iam_account ..but then don't forget to issue the third command above to add the iam policy binding to give the account the role "roles/editor"
+NOTE: if you prefer, you can follow along http://docs.pivotal.io/pivotalcf/customizing/gcp-prepare-env.html#iam_account[here^] to create the account and download the key via the google cloud console web-based ui  ..but then don't forget to issue the third command above to add the IAM policy binding to give the account the role _roles/editor_
 
 . enable access to three GCP APIs: Resource Mgr API, Cloud DNS API, Identity and Access Management API.
-   See http://docs.pivotal.io/pivotalcf/customizing/gcp-prepare-env.html#enable_compute_resource_api[these instructions] for how to do this for the Resource Manager API. Don't forget to also enable the Google Cloud DNS API, and Google Identity and Access Management API.
+   See http://docs.pivotal.io/pivotalcf/customizing/gcp-prepare-env.html#enable_compute_resource_api[these instructions^] for how to do this for the Resource Manager API. Don't forget to also enable the Google Cloud DNS API, and Google Identity and Access Management API.
 
 === Prepare and run terraform scripts
 
-Below is a distillation of the instructions from the https://github.com/pivotal-cf/terraforming-gcp[terraforming-gcp project's readme file]:
+Below is a distillation of the instructions from the https://github.com/pivotal-cf/terraforming-gcp[terraforming-gcp project's readme file^]:
 
 . navigate to the terraforming-gcp project release:
 +
@@ -92,7 +91,7 @@ You'll need to supply the following:
 
 === Validate Installation
 
-The terraform scripts create the infrastructure necessary to proceed with the installation of the bosh director, the elastic runtime tile, and PCF services tiles, which includes: a network, three subnetworks, static ip addresses, load balancers, firewall rules, routes, backend services, ssl cert, forwarding rules, health checks, instance groups, ops manager image, ops manager vm instance, ops manager service account, buckets in google storage for blobstores, hosted zone for env-name + dns suffix, and all necessary dns entries within the hosted zone.
+The terraform scripts create the infrastructure necessary to proceed with the installation of the bosh director, the elastic runtime tile, and PCF services tiles, which includes: a network, three subnetworks, static ip addresses, load balancers, firewall rules, routes, backend services, SSL cert, forwarding rules, health checks, instance groups, ops manager image, ops manager VM instance, ops manager service account, buckets in google storage for blobstores, hosted zone for env-name + DNS suffix, and all necessary DNS entries within the hosted zone.
 
 In your browser, use the google cloud console to navigate to the networking section and verify that the above have been created for you.
 
