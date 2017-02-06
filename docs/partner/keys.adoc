@@ -1,6 +1,6 @@
 == Generating SSL Private Key and Certificate for Student
 
-Assuming the domain name {domain_name} and username {username}, then:
+Assuming the domain name `{domain_name}` and username `{username}`, then:
 
 1. create a private key
 +

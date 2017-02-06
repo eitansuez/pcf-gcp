@@ -13,8 +13,8 @@ NOTE: after students finish the terraform part of the installation, instructors 
 . a private key and certificate pair to be used in conjunction with SSL configuration of the CF installation.  See <<Generating SSL Private Key and Certificate for Student>>.
 
 . a VM image with these tools pre-installed:
- - https://releases.hashicorp.com/terraform/0.8.4/[Terraform v0.8.4]
- - https://cloud.google.com/sdk/[Google Cloud SDK]
- - a copy of the https://github.com/pivotal-cf/terraforming-gcp[terraforming-gcp project] https://github.com/pivotal-cf/terraforming-gcp/releases/tag/v0.6.0[v0.6.0 release] installed to some directory
+ - https://releases.hashicorp.com/terraform/0.8.4/[Terraform v0.8.4^]
+ - https://cloud.google.com/sdk/[Google Cloud SDK^]
+ - a copy of the https://github.com/pivotal-cf/terraforming-gcp[terraforming-gcp project^] https://github.com/pivotal-cf/terraforming-gcp/releases/tag/v0.6.0[v0.6.0 release^] installed to some directory
 
 NOTE: Pivotal plans to provide partners an image pre-configured with these tools.
