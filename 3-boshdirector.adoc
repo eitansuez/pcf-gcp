@@ -1,60 +1,68 @@
-= Configure and install BOSH director
+= Configure and install BOSH Director
 
 The terraform scripts we ran in the last lab created the Ops Manager VM.
 
 The two main tasks we will accomplish in this lab are:
 
-. setup access to ops manager, by selecting a username and password (and passphrase)
-. use the ops manager to configure the bosh director.
+. setup access to Ops Manager, by selecting a username and password (and passphrase)
+. use the Ops Manager to configure the BOSH Director.
 
-Setting up the bosh director is a prerequisite step to installing Cloud Foundry.
+Setting up the BOSH Director is a prerequisite step to installing Cloud Foundry.
 
---
-1. The ops manager runs a web server that is accessible at pcf.<env-name>.<dns-suffix>.
-  open a web browser and visit that page.
+== Instructions
 
-2. follow the "Configuring Ops Manager" instructions from the pcf documentation:
-    http://docs.pivotal.io/pivotalcf/customizing/gcp-om-config.html
+. The ops manager runs a web server that is accessible at `pcf.{env_name}.{dns_suffix}`.
+  Open a web browser and visit that page.
 
-Make these selections as you work through setting up the director:
+. follow the http://docs.pivotal.io/pivotalcf/customizing/gcp-om-config.html[Configuring Ops Manager] instructions from the pcf documentation
 
- 1. select the "internal authentication" method when setting up access to your ops manager
- 2. enable vm resurrector plugin (check)
- 3. enable post deploy scripts (check)
- 4. skip the pager duty and email plugins configuration
- 5. create three availability zones
- 6. create three networks to match the three subnets that were created by the terraform scripts
- 7. select the gcp-ops-manager-subnet in step 6:  that's the subnet in which the bosh director should be installed
- 8. apply changes, it may take up to ten minutes for this to finish.
+Make the following selections as you work through setting up the director:
 
-visit the compute engine -> vm instances section in the google cloud console, and watch that a new vm will be created for the bosh director.
+. select the "internal authentication" method when setting up access to your Ops Manager
+. enable VM Resurrector plugin (check)
+. enable _post deploy scripts_ (check)
+. skip the pager duty and email plugins configuration
+. create three availability zones
+. create three networks to match the three subnets that were created by the terraform scripts
+. select the `gcp-ops-manager-subnet` in step 6:  that's the subnet in which the bosh director should be installed
+. apply changes, it may take up to ten minutes for this to finish.
 
-Congratulations, you have now deployed the bosh director.
+In the Google Cloud Console, visit the _compute engine -> vm instances_ section and observe that a new VM will be created for the BOSH Director.
 
-Post-Installation Activities:
+Congratulations, you have now deployed the BOSH Director.
 
-1. in the ops manager, select the gcp "tile".  we need some information:
+== Post-Installation Activities:
 
-a. the ops manager ip address - navigate to the 'status' tab, note the ip address for the ops manager director
-b. navigate to the 'credentials' tab, click the link to the director credentials, note the identity and password displayed in the json response.
+. in the Ops Manager, select the GCP _tile_.  We need to retrieve some information:
+.. the Ops Manager IP address: navigate to the _Status_ tab, note the IP address for the Ops Manager Director
+.. navigate to the _Credentials_ tab, click the link to the director credentials, note the identity and password displayed in the json response.
 
-2. verify that you can ssh into the ops manager with
-  gcloud compute ssh ubuntu@gcp-ops-manager
-  (creates a key pair for you dynamically)
+. verify that you can ssh into the Ops Manager with:
++
+----
+gcloud compute ssh ubuntu@gcp-ops-manager
+----
++
+NOTE: the above command dynamically creates a key pair for logging in to the VM
 
-3. bosh client installed on ops manager vm.  for security, the bosh director vm is usually not made accessible from the outside world.  the ops manager vm serves as a bastion vm from which we can communicate with the bosh director.
+The bosh client is pre-installed on Ops Manager VM.  For security, the bosh director VM is usually not made accessible from the outside world.  the Ops Manager VM serves as a bastion VM from which we can communicate with the bosh director.
 
-a. target, and login to the bosh director:
-
+. target, and login to the bosh director:
++
+----
 bosh --ca-cert /var/tempest/workspaces/default/root_ca_certificate target <director-ip-address>
+----
 
-username (might say 'email'): director
-password: <password credentials>
+When prompted to log in, enter `director` for the user name, and the previously noted secret for the password.
 
-b. bosh deployments
+. Invoke the following command:
 
-should be empty at the moment.
-log out of the ops manager.
+----
+bosh deployments
+----
 
-Congratulations, you have verified the proper functioning of the bosh director.
-We're now ready to move on to installing the elastic runtime (our next lab).
+The response should be empty at the moment, as we have not yet used the bosh directory to deploy anything.
+
+You may now log out of the ops manager.
+
+Congratulations, you have verified the proper functioning of the bosh director and are now ready to move on to installing the elastic runtime (our next lab).
