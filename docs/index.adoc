@@ -1,6 +1,6 @@
-= Gemfire Developer -- Lab Instructions
+= PCF Administration
 Eitan Suez <esuez@pivotal.io>
-v0.1, 2017:  PCF Administration (GCP)
+v0.1, 2017:  GCP-specific Lab Instructions
 :doctype: book
 :sectnums:
 :toc:
