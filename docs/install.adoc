@@ -11,8 +11,6 @@ v0.1, 2017:  GCP-specific Lab Instructions
 :domain_name: example.org
 :key_json_filename: terraform.key.json
 
-include::requirements.adoc[]
+include::install/opsmgr.adoc[]
 
-include::opsmgr.adoc[]
-
-include::boshdirector.adoc[]
+include::install/boshdirector.adoc[]

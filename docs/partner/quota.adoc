@@ -1,4 +1,4 @@
-= Suggested Quota
+== Suggested Quota
 
 The following limits were derived from the quotas listed https://github.com/c0-ops/landingpage/blob/master/gcp/refarch-main.md[here] and the quota for a GCP account used to deploy PCF.
 

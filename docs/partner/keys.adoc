@@ -1,4 +1,4 @@
-= Generating SSL Private Key and Certificate for Student
+== Generating SSL Private Key and Certificate for Student
 
 Assuming the domain name {domain_name} and username {username}, then:
 

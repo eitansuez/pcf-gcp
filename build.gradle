@@ -14,8 +14,7 @@ asciidoctor {
   backends 'html5'
   sourceDir file('docs')
   sources {
-    include 'index.adoc'
-    include 'ref/*.adoc'
+    include '*.adoc'
   }
   outputDir file('build')
   options doctype: 'book'

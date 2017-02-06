@@ -51,7 +51,7 @@ NOTE: if you prefer, you can follow along here to create the account and downloa
 . enable access to three GCP APIs: Resource Mgr API, Cloud DNS API, Identity and Access Management API.
    See http://docs.pivotal.io/pivotalcf/customizing/gcp-prepare-env.html#enable_compute_resource_api[these instructions] for how to do this for the Resource Manager API. Don't forget to also enable the Google Cloud DNS API, and Google Identity and Access Management API.
 
-=== Prepare and run terraform scripts:
+=== Prepare and run terraform scripts
 
 Below is a distillation of the instructions from the https://github.com/pivotal-cf/terraforming-gcp[terraforming-gcp project's readme file]:
 
