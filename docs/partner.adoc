@@ -5,6 +5,7 @@ v0.1, 2017:  GCP-specific Lab Instructions
 :toc: left
 :sectnums:
 :linkattrs:
+:icons: font
 :source-highlighter: highlightjs
 :project_id: jsmith-project
 :username: jsmith

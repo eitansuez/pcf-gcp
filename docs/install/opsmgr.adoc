@@ -34,11 +34,10 @@ _TBD: insert instructions for logging in to gcloud project_
 
 === Initial Configuration
 
-. setup project-wide ssh key:
-  the instructions to setup a project-wide ssh key are part of the pivotal official documentation, and available http://docs.pivotal.io/pivotalcf/customizing/gcp-prepare-env.html#keys[here^].  _Please follow step 4 only_.
+. Setup project-wide SSH key: the instructions to setup a project-wide SSH key are part of the Pivotal official documentation, and available http://docs.pivotal.io/pivotalcf/customizing/gcp-prepare-env.html#keys[here^].  _Please follow step 4 only_.
 
 +
-. setup a service account and download keyfile:
+. Create a service account and download keyfile:
 +
 [source,bash,linenums,subs="attributes+"]
 ----
@@ -57,44 +56,47 @@ gcloud projects add-iam-policy-binding {project_id} --member 'serviceAccount:ter
 +
 NOTE: if you prefer, you can follow along http://docs.pivotal.io/pivotalcf/customizing/gcp-prepare-env.html#iam_account[here^] to create the account and download the key via the google cloud console web-based ui  ..but then don't forget to issue the third command above to add the IAM policy binding to give the account the role _roles/editor_
 
-. enable access to three GCP APIs: Resource Mgr API, Cloud DNS API, Identity and Access Management API.
-   See http://docs.pivotal.io/pivotalcf/customizing/gcp-prepare-env.html#enable_compute_resource_api[these instructions^] for how to do this for the Resource Manager API. Don't forget to also enable the Google Cloud DNS API, and Google Identity and Access Management API.
+. enable access to three GCP APIs: Resource Manager API, Cloud DNS API, Identity & Access Management API.
+   See http://docs.pivotal.io/pivotalcf/customizing/gcp-prepare-env.html#enable_compute_resource_api[these instructions^] for how to do this for the Resource Manager API. Don't forget to also enable the Google Cloud DNS API, and Google Identity and Access Management API in a similar fashion.
 
-=== Prepare and run terraform scripts
+=== Prepare and run Terraform scripts
 
-Below is a distillation of the instructions from the https://github.com/pivotal-cf/terraforming-gcp[terraforming-gcp project's readme file^]:
+Below is a distillation of the instructions from the https://github.com/pivotal-cf/terraforming-gcp[terraforming-gcp project's README file^]:
 
-. navigate to the terraforming-gcp project release:
+. Navigate to the terraforming-gcp project release:
 +
 ----
 cd ~/terraforming-gcp
 ----
 
-. setup your `terraform.tfvars` file as described in the project's readme file:
+. Setup your `terraform.tfvars` file as described in the project's README file:
 +
-You'll need to supply the following:
+You'll need to supply values for the following variables:
 
  - `project`: your project id ({project_id})
  - `region`: us-central1
  - `zones`: ["us-central1-a", "us-central1-b", "us-central1-c"]
  - `env_name`: your username, e.g. {username}
  - `opsman_image_url`: https://storage.googleapis.com/ops-manager-us/pcf-gcp-1.9.2.tar.gz
++
+TIP: to install a newer version of the ops manager, visit the https://network.pivotal.io[Pivotal Network^]), and under _Operations Manager_, look for the _Pivotal Cloud Foundry Ops Manager YAML for GCP_
+
  - `dns_suffix`: provided by partner, e.g. {domain_name}
  - `ssl_cert` : copy and paste the supplied SSL certificate
  - `ssl_cert_private_key` : copy and paste the suplied SSL private key
- - `service_account_key` : copy and paste the contents of the service account key file you created above ({key_json_filename})
+ - `service_account_key` : copy and paste the contents of the service account key file you created above (_{key_json_filename}_)
 
-. from the `terraforming-gcp` directory, run `terraform plan` to see what you're about to create.
+. From the `terraforming-gcp` directory, run `terraform plan` to see what you're about to create.
 
-. run `terraform apply` and watch it create the IAAS foundation that will be used to install Cloud Foundry.
+. Run `terraform apply` and watch it create the IAAS foundation that will be used to install Cloud Foundry.
 
 
 === Validate Installation
 
-The terraform scripts create the infrastructure necessary to proceed with the installation of the bosh director, the elastic runtime tile, and PCF services tiles, which includes: a network, three subnetworks, static ip addresses, load balancers, firewall rules, routes, backend services, SSL cert, forwarding rules, health checks, instance groups, ops manager image, ops manager VM instance, ops manager service account, buckets in google storage for blobstores, hosted zone for env-name + DNS suffix, and all necessary DNS entries within the hosted zone.
+The Terraform scripts create the infrastructure necessary to proceed with the installation of the bosh director, the elastic runtime tile, and PCF services tiles.  This infrastructure includes: a network, three subnetworks, static IP addresses, load balancers, firewall rules, routes, backend services, SSL cert, forwarding rules, health checks, instance groups, Ops Manager image, Ops Manager VM instance, Ops Manager service account, buckets in google storage for blobstores, hosted zone for env-name + DNS suffix, and all necessary DNS entries within the hosted zone.
 
 In your browser, use the google cloud console to navigate to the networking section and verify that the above have been created for you.
 
-NOTE: this terraform script sets up three availability zones, and three separate subnets, one each for ops vms (ops manager and bosh director), elastic runtime, cloud foundry services
+NOTE: this Terraform script sets up three availability zones, and three separate subnets, one each for ops VMs (Ops Manager and bosh director), elastic runtime, Cloud Foundry services
 
 Congratulations, you have deployed the infrastructure necessary to proceed with the installation.
