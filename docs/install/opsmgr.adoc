@@ -11,16 +11,18 @@ Your instructor has prepared the following on your behalf:
 
 === Logging in to GCP
 
-- in a browser, navigate to the https://console.cloud.google.com/[GCP console] and log in.  Next, navigate to your project.
+- in a browser, navigate to the https://console.cloud.google.com/[GCP console] and log in.  Next, navigate to your project by selecting your project name from the projects "dropdown" in the page header.
 
-- create instance of image: locate image, create instance _TODO: supply instructions_
+- create instance of image: locate image, create instance
++
+_TBD: supply instructions_
 
 - ssh in to your instance:
 +
 ----
 gcloud compute ssh ubuntu@[instance-name]
 ----
-+
+
 - log in to google cloud project from the command line, using the gcloud sdk
 +
 ----
@@ -42,7 +44,15 @@ _TBD: insert instructions for logging in to gcloud project_
 [source,bash,linenums,subs="attributes+"]
 ----
 gcloud iam service-accounts create terraform-service-account
+----
++
+[source,bash,linenums,subs="attributes+"]
+----
 gcloud iam service-accounts keys create "{key_json_filename}" --iam-account "terraform-service-account@{project_id}.iam.gserviceaccount.com"
+----
++
+[source,bash,linenums,subs="attributes+"]
+----
 gcloud projects add-iam-policy-binding {project_id} --member 'serviceAccount:terraform-service-account@{project_id}.iam.gserviceaccount.com' --role 'roles/editor'
 ----
 +

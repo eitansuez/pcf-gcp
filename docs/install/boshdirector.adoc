@@ -1,4 +1,4 @@
-== Configure and install BOSH Director
+== BOSH Director
 
 The terraform scripts we ran in the last lab created the Ops Manager VM.
 
@@ -31,7 +31,7 @@ In the Google Cloud Console, visit the _compute engine -> vm instances_ section 
 
 Congratulations, you have now deployed the BOSH Director.
 
-=== Post-Installation Activities:
+=== Post-Installation
 
 . in the Ops Manager, select the GCP _tile_.  We need to retrieve some information:
 .. the Ops Manager IP address: navigate to the _Status_ tab, note the IP address for the Ops Manager Director
@@ -50,7 +50,7 @@ The bosh client is pre-installed on Ops Manager VM.  For security, the bosh dire
 . target, and login to the bosh director:
 +
 ----
-bosh --ca-cert /var/tempest/workspaces/default/root_ca_certificate target <director-ip-address>
+bosh --ca-cert /var/tempest/workspaces/default/root_ca_certificate target {director-ip-address}
 ----
 
 When prompted to log in, enter `director` for the user name, and the previously noted secret for the password.

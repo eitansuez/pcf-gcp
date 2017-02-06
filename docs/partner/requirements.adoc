@@ -8,7 +8,7 @@ Partners furnish each student (or pair of students) the following:
   For example, assuming the domain name `example.org`, and a student named John Smith
   with username `jsmith`, their PCF instance domain name would have the suffix `jsmith.example.org`.
 +
-NOTE: instructors will have to create an NS record for each student subdomain
+NOTE: after students finish the terraform part of the installation, instructors will need to create an NS record for each student subdomain
 
 . a private key and certificate pair to be used in conjunction with SSL configuration of the CF installation.  See <<Generating SSL Private Key and Certificate for Student>>.
 
