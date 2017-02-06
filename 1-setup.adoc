@@ -3,17 +3,19 @@
 
 Partners furnish each student (or pair of students) the following:
 
-1. a GCP project with access credentials, and link:quota.adoc[quota] set appropriately to deploy PCF.
+. a GCP project with access credentials, and link:quota.adoc[quota] set appropriately to deploy PCF.
 
-2. a registered domain name, from which subdomains can be created for each student.
+. a registered domain name, from which subdomains can be created for each student.
   For example, assuming the domain name `example.org`, and a student named John Smith
   with username `jsmith`, their PCF instance domain name would have the suffix `jsmith.example.org`.
++
+NOTE: instructors will have to create an NS record for each student subdomain
 
-3. a private key and certificate pair to be used in conjunction with SSL configuration of the CF installation.  See link:making-keys.adoc[these instructions].
+. a private key and certificate pair to be used in conjunction with SSL configuration of the CF installation.  See link:making-keys.adoc[these instructions].
 
-4. a VM image with these tools pre-installed:
+. a VM image with these tools pre-installed:
  - https://releases.hashicorp.com/terraform/0.8.4/[Terraform v0.8.4]
  - https://cloud.google.com/sdk/[Google Cloud SDK]
  - a copy of the https://github.com/pivotal-cf/terraforming-gcp[terraforming-gcp project] https://github.com/pivotal-cf/terraforming-gcp/releases/tag/v0.6.0[v0.6.0 release] installed to some directory
 
-NOTE: we are in the process of creating an image that is pre-configured with these tools.
+NOTE: Pivotal plans to provide partners an image pre-configured with these tools.
