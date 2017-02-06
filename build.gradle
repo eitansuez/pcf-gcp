@@ -16,4 +16,7 @@ asciidoctor {
   sources {
     include 'index.adoc'
   }
+  outputDir file('build')
 }
+
+defaultTasks 'asciidoctor'
