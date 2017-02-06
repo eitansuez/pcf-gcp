@@ -11,7 +11,7 @@ Partners furnish each student (or pair of students) the following:
 +
 NOTE: instructors will have to create an NS record for each student subdomain
 
-. a private key and certificate pair to be used in conjunction with SSL configuration of the CF installation.  See link:making-keys.adoc[these instructions].
+. a private key and certificate pair to be used in conjunction with SSL configuration of the CF installation.  See link:keys.adoc[these instructions].
 
 . a VM image with these tools pre-installed:
  - https://releases.hashicorp.com/terraform/0.8.4/[Terraform v0.8.4]
