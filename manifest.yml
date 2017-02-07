@@ -1,0 +1,6 @@
+---
+applications:
+- name: pcfadmin-gcp
+  buildpack: staticfile_buildpack
+  memory: 64M
+
