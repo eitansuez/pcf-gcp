@@ -18,8 +18,6 @@ asciidoctor {
   }
   outputDir file('build')
   options doctype: 'book'
-  attributes toc: 'left', sectnums: '', linkattrs: '', 'source-highlighter': 'highlightjs',
-    project_id: 'jsmith-project', username: 'jsmith', domain_name: 'example.org', key_json_filename: 'terraform.key.json'
 }
 
 defaultTasks 'asciidoctor'
