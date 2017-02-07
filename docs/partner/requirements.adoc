@@ -1,21 +1,33 @@
 == Partner Requirements
 
-Partners furnish each student (or pair of students) the following:
+=== Domain name
 
-. a GCP project with access credentials, and <<Suggested Quota>> set appropriately to deploy PCF.
-
-. a registered domain name, from which subdomains can be created for each student.
-  For example, assuming the domain name `example.org`, and a student named John Smith
+When delivering PCF Administrator training using Google Cloud Platform (GCP), a partner needs to have a registered domain name, from which subdomains can be created for each student. For example, assuming the domain name `example.org`, and a student named John Smith
   with username `jsmith`, their PCF instance domain name would have the suffix `jsmith.example.org`.
-+
-NOTE: after students finish the terraform part of the installation, instructors will need to create an NS record for each student subdomain
 
-. a private key and certificate pair to be used in conjunction with SSL configuration of the CF installation.  See <<Generating SSL Private Key and Certificate for Student>>.
+=== Tooling
 
-. a VM image has been prepared for you in GCP with these tools pre-installed:
+The installation of PCF on GCP requires:
+
+- the use of the gcloud CLI, which is part of the Google Cloud SDK
+- the use of a tool called Terraform, to setup the infrastructure
+- a Pivotal project containing Terraform scripts designed for PCF
+
+A VM image has been prepared for you in GCP with these tools pre-installed:
+
  - https://cloud.google.com/sdk/[Google Cloud SDK^]
  - https://releases.hashicorp.com/terraform/0.8.4/[Terraform v0.8.4^]
  - a copy of the https://github.com/pivotal-cf/terraforming-gcp[terraforming-gcp project^] https://github.com/pivotal-cf/terraforming-gcp/releases/tag/v0.6.0[v0.6.0 release^] installed to some directory
 +
 The image name is:  `pcfadmin-gcp-1486429852`
 The idea is to provide students an alternative to installing the above tools themselves on their own machines.
+
+=== Additional Requirements
+
+Furnish each student (or pair of students):
+
+. a GCP project that the student will own, with quota configured appropriately to deploy PCF.  See <<Suggested Quota>>.
+
+. a private key and certificate pair to be used in conjunction with SSL configuration of the CF installation.  See <<Generating SSL Private Key and Certificate for Student>>.
+
+NOTE: after students finish the terraform part of the installation, they will have a Google Cloud DNS zone configured for their subdomain.  Instructors will need to create an NS record for each subdomain.
