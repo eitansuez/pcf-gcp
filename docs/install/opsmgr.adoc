@@ -14,13 +14,17 @@ Your instructor has prepared the following on your behalf:
 - in a browser, navigate to the https://console.cloud.google.com/[GCP console^] and log in.  Next, navigate to your project by selecting your project name from the projects "dropdown" in the page header.
 
 - create instance of image: locate image, create instance
-+
-_TBD: supply instructions_
+** Navigate to _Compute Engine_
+** Select _Images_
+** Search for Image named _pcfadmin-gcp-1486429852_
+** Select _Create Instance_
+** Name the instance _jumpbox_, keep everything else the same
+** Click _Create_
 
-- ssh in to your instance:
+- wait for the instance to come up and initialize.  then, ssh in to your instance:
 +
 ----
-gcloud compute ssh ubuntu@[instance-name]
+gcloud compute ssh ubuntu@jumpbox
 ----
 
 - log in to google cloud project from the command line, using the gcloud sdk
@@ -30,7 +34,10 @@ gcloud init
 ----
 +
 
-_TBD: insert instructions for logging in to gcloud project_
+** When prompted to select an account, select option 2: _Log in with a new account_, and follow the instructions to authenticate
+** Enter your project id when prompted for it
+** Select the default region where resources should be created (us-central1)
+
 
 === Initial Configuration
 
