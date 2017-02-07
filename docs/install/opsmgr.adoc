@@ -13,7 +13,7 @@ Your instructor has prepared the following on your behalf:
 
 - in a browser, navigate to the https://console.cloud.google.com/[GCP console^] and log in.  Next, navigate to your project by selecting your project name from the projects "dropdown" in the page header.
 
-- create instance of image: locate image, create instance
+- create instance of image:
 ** Navigate to _Compute Engine_
 ** Select _Images_
 ** Search for Image named _pcfadmin-gcp-1486429852_
@@ -86,7 +86,7 @@ You'll need to supply values for the following variables:
  - `env_name`: your username, e.g. {username}
  - `opsman_image_url`: https://storage.googleapis.com/ops-manager-us/pcf-gcp-1.9.2.tar.gz
 +
-TIP: to install a newer version of the ops manager, visit the https://network.pivotal.io[Pivotal Network^]), and under _Operations Manager_, look for the _Pivotal Cloud Foundry Ops Manager YAML for GCP_
+TIP: to install a newer version of the Ops Manager, visit the https://network.pivotal.io[Pivotal Network^]), and under _Operations Manager_, look for the _Pivotal Cloud Foundry Ops Manager YAML for GCP_
 
  - `dns_suffix`: provided by partner, e.g. {domain_name}
  - `ssl_cert` : copy and paste the supplied SSL certificate
