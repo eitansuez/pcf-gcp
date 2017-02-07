@@ -63,7 +63,7 @@ gcloud projects add-iam-policy-binding {project_id} --member 'serviceAccount:ter
 +
 NOTE: if you prefer, you can follow along http://docs.pivotal.io/pivotalcf/customizing/gcp-prepare-env.html#iam_account[here^] to create the account and download the key via the google cloud console web-based ui  ..but then don't forget to issue the third command above to add the IAM policy binding to give the account the role _roles/editor_
 
-. enable access to three GCP APIs: Resource Manager API, Cloud DNS API, Identity & Access Management API.
+. Enable access to three GCP APIs: Resource Manager API, Cloud DNS API, Identity & Access Management API.
    See http://docs.pivotal.io/pivotalcf/customizing/gcp-prepare-env.html#enable_compute_resource_api[these instructions^] for how to do this for the Resource Manager API. Don't forget to also enable the Google Cloud DNS API, and Google Identity and Access Management API in a similar fashion.
 
 === Prepare and run Terraform scripts
