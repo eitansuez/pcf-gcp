@@ -16,7 +16,7 @@ Your instructor has prepared the following on your behalf:
 - create instance of image:
 ** Navigate to _Compute Engine_
 ** Select _Images_
-** Search for Image named _pcfadmin-gcp-1486429852_
+** Search for Image named _{image_name}_
 ** Select _Create Instance_
 ** Name the instance _jumpbox_, keep everything else the same
 ** Click _Create_

@@ -11,6 +11,7 @@ v0.1, 2017:  GCP-specific Lab Instructions
 :username: jsmith
 :domain_name: example.org
 :key_json_filename: terraform.key.json
+:image_name: pcfadmin-gcp-1486429852
 
 include::install/opsmgr.adoc[]
 
