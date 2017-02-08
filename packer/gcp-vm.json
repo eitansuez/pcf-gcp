@@ -1,0 +1,26 @@
+{
+  "builders": [{
+    "type": "googlecompute",
+    "account_file": "/Users/esuez/.ssh/FE-esuez-14125bc7599f.json",
+    "project_id": "fe-esuez",
+    "source_image": "ubuntu-1610-yakkety-v20170103",
+    "zone": "us-central1-a",
+    "ssh_username": "ubuntu",
+    "state_timeout": "10m",
+    "image_name": "pcfadmin-gcp-{{timestamp}}"
+  }],
+  "provisioners": [{
+    "type": "shell",
+    "inline": [
+      "sleep 30",
+      "sudo apt install -y unzip",
+      "wget https://releases.hashicorp.com/terraform/0.8.4/terraform_0.8.4_linux_amd64.zip",
+      "unzip terraform_0.8.4_linux_amd64.zip -d bin",
+      "wget https://github.com/pivotal-cf/terraforming-gcp/archive/v0.6.0.zip",
+      "unzip v0.6.0.zip",
+      "mkdir downloads",
+      "mv *.zip downloads",
+      "ln -s ~/terraforming-gcp-0.6.0 terraforming-gcp"
+    ]
+  }]
+}

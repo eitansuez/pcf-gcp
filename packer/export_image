@@ -1,0 +1,37 @@
+
+2017.02
+
+Goal: shareable image on gcp for a pcfadmin course jumpbox with some pre-installed software (mainly terraformin-gcp project release and terraform binary)
+
+Documentation of process:
+
+1. create image in your gcp project:
+
+packer build gcp-vm.json
+
+2. follow instructions here: https://cloud.google.com/compute/docs/images/export-image
+  to export image as a tar.gz file in a google cloud storage bucket
+
+a. create instance from image created in step [1], name it jumpbox
+b. stop the instance
+then:
+
+gcloud compute disks snapshot jumpbox --snapshot-names image-snapshot
+gcloud compute disks create image-disk --source-snapshot image-snapshot
+gcloud compute disks create temporary-disk --size 15GB
+
+gcloud compute instances create my-instance --scopes storage-rw \
+    --disk name=image-disk,device-name=image-disk \
+    --disk name=temporary-disk,device-name=temporary-disk
+
+gcloud compute ssh my-instance
+
+sudo mkdir /mnt/tmp
+sudo mkfs.ext4 -F /dev/disk/by-id/google-temporary-disk
+sudo mount -o discard,defaults /dev/disk/by-id/google-temporary-disk /mnt/tmp
+sudo dd if=/dev/disk/by-id/google-image-disk of=/mnt/tmp/disk.raw bs=4096
+cd /mnt/tmp
+sudo tar czvf pcfadmin-gcp-jumpbox.tar.gz disk.raw
+
+gsutil mb gs://pcfadmin-us
+gsutil cp /mnt/tmp/pcfadmin-gcp-jumpbox.tar.gz gs://pcfadmin-us
