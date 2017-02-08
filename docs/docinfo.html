@@ -1,0 +1,28 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.6.0/clipboard.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+$(function() {
+  var button = $("<button class='c2cb-trigger'><img src='clippy.svg' alt='Copy to clipboard'></button>")
+  $(".listingblock > .content pre").append(button);
+
+  var clipboard = new Clipboard('.c2cb-trigger', {
+    target: function(trigger) {
+      return $(trigger).siblings("code")[0];
+    }
+  });
+  clipboard.on('success', function(e) {
+    e.clearSelection();
+  });
+
+});
+</script>
+<style>
+.c2cb-trigger {
+  position: absolute; right: 0; top: 0;
+}
+.c2cb-trigger > img {
+  position: relative;
+  width: 13px;
+  cursor: pointer;
+}
+</style>

@@ -16,6 +16,11 @@ asciidoctor {
   sources {
     include '*.adoc'
   }
+  resources {
+    from('resources') {
+      include '*'
+    }
+  }
   outputDir file('build')
   options doctype: 'book'
 }
