@@ -6,22 +6,42 @@ Your instructor has prepared the following on your behalf:
 
 - A Google Cloud Project
 - A private key and SSL certificate to be used in conjunction with installing PCF
-- A VM Image with the software necessary to install Cloud Foundry
+- An Image with the software necessary to install Cloud Foundry
 
 
 === Logging in to GCP
 
-- in a browser, navigate to the https://console.cloud.google.com/[GCP console^] and log in.  Next, navigate to your project by selecting your project name from the projects "dropdown" in the page header.
+- in a browser, navigate to the https://console.cloud.google.com/[GCP console^] and log in.
+- navigate to your project by selecting your project name from the projects "dropdown" in the page header.
 
-- create instance of image:
-** Navigate to _Compute Engine_
-** Select _Images_
-** Search for Image named _{image_name}_
-** Select _Create Instance_
-** Name the instance _jumpbox_, keep everything else the same
-** Click _Create_
 
-- wait for the instance to come up and initialize.  then, ssh in to your instance:
+=== Creating your JumpBox VM instance
+
+In a manner _similar to_ what is described http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-om-deploy.html[here^], we will be creating a VM instance from an image available in Google Cloud Storage at this file path: {image_cloudstorage_file}
+
+* Navigate to _Compute Engine_
+* Select _Images_
+* Click _Create Image_
+* Complete the following fields:
+** Name: _jumpbox-image_
+** Source: _Cloud Storage file_
+** Cloud Storage file: _{image_cloudstorage_file}_
+* Click _Create_
+
+Wait for the image to be created in your project.  This may take a minute.
+
+Now that we have an image, let's create an instance:
+
+* Select (check) the image
+* Click _Create Instance_
+* Name the instance _jumpbox_
+* Click: _Create_
+
+Wait for the image instance to come up and initialize.
+
+=== Accessing the JumpBox VM
+
+- ssh in to your instance:
 +
 ----
 gcloud compute ssh ubuntu@jumpbox
