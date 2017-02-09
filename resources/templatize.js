@@ -23,14 +23,21 @@ $(function() {
     fieldset.append("<input type='button' id='binditBtn' value='Apply'>");
     $("#binditBtn").click(function() {
       bind(form2o(form));
-      form.toggle();
+      form.toggle(); // "close"
     });
 
     $("#form-trigger").click(function() {
       form.toggle();
+      if (form.is(":visible")) {
+        form.find($("input:text:visible:first")).focus();
+      }
     });
 
-    form.find($("input:text:visible:first")).focus();
+    $(document).keyup(function(e) {
+      if (e.which === 27 && form.is(":visible")) {
+        form.toggle();
+      }
+    });
   }
 
   function bind(context) {
