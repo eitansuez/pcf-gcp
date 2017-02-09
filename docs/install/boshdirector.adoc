@@ -11,7 +11,7 @@ Setting up the BOSH Director is a prerequisite step to installing Cloud Foundry.
 
 === Instructions
 
-. The Ops Manager runs a web server that is accessible at `pcf.{env_name}.{dns_suffix}`.
+. The Ops Manager runs a web server that is accessible at `pcf.{env_name}.{domain_name}`.
   Open a web browser and visit that page.
 
 . follow the http://docs.pivotal.io/pivotalcf/customizing/gcp-om-config.html[Configuring Ops Manager^] instructions from the PCF documentation
@@ -52,7 +52,7 @@ The bosh client is pre-installed on Ops Manager VM.  For security, the bosh dire
 +
 [source,bash,subs="attributes+"]
 ----
-bosh --ca-cert /var/tempest/workspaces/default/root_ca_certificate target {director-ip-address}
+bosh --ca-cert /var/tempest/workspaces/default/root_ca_certificate target {director_ip_address}
 ----
 +
 When prompted to log in, enter `director` for the user name, and the previously noted secret for the password.

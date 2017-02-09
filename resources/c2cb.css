@@ -1,8 +1,8 @@
 /* copy to clipboard styles */
-.c2cb-trigger {
+#content .c2cb-trigger {
   position: absolute; right: 0; top: 0;
 }
-.c2cb-trigger > img {
+#content .c2cb-trigger > img {
   position: relative;
   width: 13px;
   cursor: pointer;

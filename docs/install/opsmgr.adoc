@@ -106,7 +106,7 @@ You'll need to supply values for the following variables:
  - `project`: your project id ({project_id})
  - `region`: us-central1
  - `zones`: ["us-central1-a", "us-central1-b", "us-central1-c"]
- - `env_name`: your username, e.g. {username}
+ - `env_name`: your username, e.g. {env_name}
  - `opsman_image_url`: https://storage.googleapis.com/ops-manager-us/pcf-gcp-1.9.2.tar.gz
 +
 TIP: to install a newer version of the Ops Manager, visit the https://network.pivotal.io[Pivotal Network^]), and under _Operations Manager_, look for the _Pivotal Cloud Foundry Ops Manager YAML for GCP_

@@ -1,0 +1,35 @@
+#header form#thebinding {
+  display: none;
+  position: relative;
+}
+#header form#thebinding fieldset {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 35em;
+  display: table;
+  z-index: 10;
+  background-color: white;
+}
+#header form#thebinding p {
+  display: table-row;
+}
+#header form#thebinding label {
+  display: table-cell;
+  text-align: right;
+}
+#header form#thebinding input {
+  display: table-cell;
+  text-align: left;
+}
+#header form#thebinding input[type=button] {
+  display: table-cell;
+  text-align: right;
+}
+#header #form-trigger {
+  width: 1.5em;
+  position: absolute;
+  top: 3.5em;
+  right: 0;
+  cursor: pointer;
+}
