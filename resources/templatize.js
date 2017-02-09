@@ -20,7 +20,8 @@ $(function() {
       fieldset.append(formFieldTemplate({name: attributes[i]}));
     }
 
-    fieldset.append("<input type='button' id='binditBtn' value='Apply'>");
+    var formButtonTemplate = Handlebars.compile($("#form_button").html());
+    fieldset.append(formButtonTemplate({}));
     $("#binditBtn").click(function() {
       bind(form2o(form));
       form.toggle(); // "close"
