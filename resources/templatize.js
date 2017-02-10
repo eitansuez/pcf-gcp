@@ -1,5 +1,9 @@
-
+/* templatize */
 $(function() {
+  if (typeof(attributes) == "undefined") {
+    return;
+  }
+
   var content = $("#content");
   var header = $("#header");
   $("#template").append(content.html());

@@ -1,11 +1,29 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.6.0/clipboard.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+<script src="jquery-ui.min.js"></script>
+<link rel="stylesheet" href="jquery-ui.min.css">
+<script>
+$(function() {
+  var classname = $(".tabs").data("for");
+  var stuff = $("."+classname).detach();
+  $(".tabs").append(stuff);
+  $(".tabs").tabs();
+});
+</script>
+<style>
+.tabs {
+  margin-bottom: 1em;
+}
+</style>
+
 <script src="c2cb.js"></script>
 <link rel="stylesheet" href="c2cb.css">
+
 <script src="templatize.js"></script>
-<script id="template" type="text/x-handlebars-template"></script>
 <link rel="stylesheet" href="form.css">
+
+<script id="template" type="text/x-handlebars-template"></script>
 <script id="form_field" type="text/x-handlebars-template">
   <p>
     <div class="label">
