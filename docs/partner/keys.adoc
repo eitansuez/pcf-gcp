@@ -4,14 +4,14 @@ Assuming the domain name `{domain_name}` and username `{username}`, then:
 
 1. create a private key
 +
-[source,bash,subs="attributes+"]
+[source]
 ----
 openssl genrsa -out {username}-key.pem 2048
 ----
 +
 2. create a certificate
 +
-[source,bash,subs="attributes+"]
+[source]
 ----
 openssl req -x509 -sha256 -new \
   -key {username}-key.pem \
