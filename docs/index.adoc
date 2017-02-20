@@ -1,8 +1,7 @@
 = PCF Administration - GCP
 Eitan Suez <esuez@pivotal.io>
 v0.1, 2017:  GCP-specific Lab Instructions
-:linkcss:
 
 .Documents
-- link:partner{outfilesuffix}[Partner Requirements]
-- link:install{outfilesuffix}[Terraforming GCP]
+- link:partner{outfilesuffix}[Partner Requirements^]
+- link:install{outfilesuffix}[Terraforming GCP^]

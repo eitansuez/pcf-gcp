@@ -34,7 +34,9 @@ asciidoctor {
     }
   }
   outputDir file('build')
-  options doctype: 'book'
+  attributes toc: 'left', sectnums: '', icons: 'font', experimental: '',
+   linkcss: '', linkattrs: '', docinfo: 'shared', imagesdir: 'images',
+   'source-highlighter': 'highlightjs'
   extensions {
     docinfo_processor { document ->
       def attrs = document.attributes.findAll { key, value ->

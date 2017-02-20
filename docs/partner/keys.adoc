@@ -4,26 +4,26 @@ Assuming the domain name `{domain_name}` and username `{username}`, then:
 
 1. create a private key
 +
-[source]
+[source.terminal]
 ----
-openssl genrsa -out {username}-key.pem 2048
+openssl genrsa -out {{username}}-key.pem 2048
 ----
 +
 2. create a certificate
 +
-[source]
+[source.terminal]
 ----
 openssl req -x509 -sha256 -new \
-  -key {username}-key.pem \
-  -out {username}-cert.pem \
-  -subj "/C=US/ST=Texas/L=Austin/O=Pivotal, Inc./OU=Education/CN=*.{username}.{domain_name}" \
+  -key {{username}}-key.pem \
+  -out {{username}}-cert.pem \
+  -subj "/C=US/ST=Texas/L=Austin/O=Pivotal, Inc./OU=Education/CN=*.{{username}}.{{domain_name}}" \
   -days 365 \
   -config pcf-san.cnf
 ----
 +
 ..where `pcf-san.cnf` is an adaptation of `/usr/local/etc/openssl/openssl.cnf` with the following modifications:
 +
-[source,diff,subs="attributes+"]
+[source.terminal,diff,subs="attributes+"]
 ----
 66c66
 < # copy_extensions = copy

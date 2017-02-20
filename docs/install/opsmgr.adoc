@@ -43,14 +43,14 @@ Wait for the image instance to come up and initialize.
 
 - ssh in to your instance:
 +
-[source]
+[source.terminal]
 ----
 gcloud compute ssh ubuntu@jumpbox
 ----
 
 - log in to google cloud project from the command line, using the gcloud sdk
 +
-[source]
+[source.terminal]
 ----
 gcloud init
 ----
@@ -68,17 +68,17 @@ gcloud init
 +
 . Create a service account and download keyfile:
 +
-[source]
+[source.terminal]
 ----
 gcloud iam service-accounts create terraform-service-account
 ----
 +
-[source]
+[source.terminal,subs="attributes+"]
 ----
-gcloud iam service-accounts keys create "{key_json_filename}" --iam-account "terraform-service-account@{project_id}.iam.gserviceaccount.com"
+gcloud iam service-accounts keys create '{key_json_filename}' --iam-account 'terraform-service-account@{project_id}.iam.gserviceaccount.com'
 ----
 +
-[source]
+[source.terminal,subs="attributes+"]
 ----
 gcloud projects add-iam-policy-binding {project_id} --member 'serviceAccount:terraform-service-account@{project_id}.iam.gserviceaccount.com' --role 'roles/editor'
 ----
@@ -94,7 +94,7 @@ Below is a distillation of the instructions from the https://github.com/pivotal-
 
 . Navigate to the terraforming-gcp project release:
 +
-[source]
+[source.terminal]
 ----
 cd ~/terraforming-gcp
 ----
