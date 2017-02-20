@@ -127,6 +127,6 @@ The Terraform scripts create the infrastructure necessary to proceed with the in
 
 In your browser, use the google cloud console to navigate to the networking section and verify that the above have been created for you.
 
-NOTE: this Terraform script sets up three availability zones, and three separate subnets, one each for ops VMs (Ops Manager and bosh director), elastic runtime, Cloud Foundry services
+NOTE: this Terraform script sets up three availability zones, and three separate subnets, one each for ops VMs (Ops Manager and bosh director), elastic runtime, and Cloud Foundry services
 
 Congratulations, you have deployed the infrastructure necessary to proceed with the installation.
