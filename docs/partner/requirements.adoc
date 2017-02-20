@@ -13,7 +13,7 @@ The installation of PCF on GCP requires:
 - the tool https://www.terraform.io/[Terraform^], to setup the infrastructure
 - the use of a Pivotal project containing Terraform scripts designed for PCF
 
-For convenience, a VM image in Google Cloud Storage (named {image_cloudstorage_file}) has been prepared with the above items pre-installed:
+For convenience, a VM image in Google Cloud Storage (named _{image_cloudstorage_file}_) has been prepared with the above items pre-installed:
 
  - https://cloud.google.com/sdk/[Google Cloud SDK^]
  - https://releases.hashicorp.com/terraform/0.8.4/[Terraform v0.8.4^]
