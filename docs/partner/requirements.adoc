@@ -10,17 +10,17 @@ When delivering PCF Administrator training using Google Cloud Platform (GCP), a 
 The installation of PCF on GCP requires:
 
 - the use of the gcloud CLI, which is part of the Google Cloud SDK
-- the use of a tool called Terraform, to setup the infrastructure
-- a Pivotal project containing Terraform scripts designed for PCF
+- the tool https://www.terraform.io/[Terraform^], to setup the infrastructure
+- the use of a Pivotal project containing Terraform scripts designed for PCF
 
-A VM image has been prepared for you in GCP with these tools pre-installed:
+For convenience, a VM image in Google Cloud Storage (named {image_cloudstorage_file}) has been prepared with the above items pre-installed:
 
  - https://cloud.google.com/sdk/[Google Cloud SDK^]
  - https://releases.hashicorp.com/terraform/0.8.4/[Terraform v0.8.4^]
- - a copy of the https://github.com/pivotal-cf/terraforming-gcp[terraforming-gcp project^] https://github.com/pivotal-cf/terraforming-gcp/releases/tag/v0.6.0[v0.6.0 release^] installed to some directory
-+
-The image name is:  `pcfadmin-gcp-1486429852`
-The idea is to provide students an alternative to installing the above tools themselves on their own machines.
+ - a copy of the https://github.com/pivotal-cf/terraforming-gcp[terraforming-gcp project^] https://github.com/pivotal-cf/terraforming-gcp/releases/tag/v0.6.0[v0.6.0 release^] installed at `~/terraforming-gcp`
+
+Students are free to setup their local machines with the above tools on their own.  For convenience, they can opt instead to instantiate a VM with the tools pre-installed.  Instructions are provided in the lab.
+
 
 === Additional Requirements
 

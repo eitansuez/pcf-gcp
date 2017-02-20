@@ -6,7 +6,6 @@ Your instructor has prepared the following on your behalf:
 
 - A Google Cloud Project
 - A private key and SSL certificate to be used in conjunction with installing PCF
-- An Image with the software necessary to install Cloud Foundry
 
 
 === Logging in to GCP

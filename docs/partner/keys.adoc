@@ -21,7 +21,7 @@ openssl req -x509 -sha256 -new \
   -config pcf-san.cnf
 ----
 +
-..where `pcf-san.cnf` is an adaptation of `/usr/local/etc/openssl/openssl.cnf` with the following modifications:
+..where `pcf-san.cnf` is an adaptation of `/usr/local/etc/openssl/openssl.cnf` revised as follows:
 +
 [source.terminal,diff,subs="attributes+"]
 ----
