@@ -111,10 +111,15 @@ NOTE: One specific operation -- the creation of an image from a Google Cloud Sto
 
 == Validate Installation
 
-The Terraform scripts create the infrastructure necessary to proceed with the installation of the bosh director, the elastic runtime tile, and PCF services tiles.  This infrastructure includes: a network, three subnetworks, static IP addresses, load balancers, firewall rules, routes, backend services, SSL cert, forwarding rules, health checks, instance groups, Ops Manager image, Ops Manager VM instance, Ops Manager service account, buckets in google storage for blobstores, hosted zone for env-name + DNS suffix, and all necessary DNS entries within the hosted zone.
+The Terraform scripts create the infrastructure necessary to proceed with the installation of the bosh director, the elastic runtime tile, and PCF services tiles.
 
-In your browser, use the google cloud console to navigate to the networking section and verify that the above have been created for you.
+This infrastructure includes: a network, three subnetworks, static IP addresses, load balancers, firewall rules, routes, backend services, SSL cert, forwarding rules, health checks, instance groups, buckets in Google Cloud Storage for _blobstores_, a hosted zone for {env_name}.{domain_name}, and all necessary DNS entries within the hosted zone.
 
-NOTE: This Terraform script sets up three availability zones, and three separate subnets, one each for ops VMs (Ops Manager and bosh director), elastic runtime, and Cloud Foundry services
+Finally, the terraform script creates your Ops Manager image, an Ops Manager service account, and most importantly, Ops Manager VM instance, which you'll interact with in the next lab.
+
+In your browser, use the Google Cloud Console to navigate to the Networking and other relevant sections to review the infrastructure that has been created.
+
+
+NOTE: This Terraform script sets up three availability zones, and three separate subnets, one each for ops VMs (Ops Manager and bosh director), Elastic Runtime, and Cloud Foundry services.
 
 Congratulations, you have deployed the infrastructure necessary to proceed with the installation.
