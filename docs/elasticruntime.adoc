@@ -13,7 +13,7 @@ The general instructions for installing the Elastic Runtime on GCP are available
 
 . Follow http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#download-er[Steps 1 and 2^] to download the elastic runtime tile and then to add (or import) the tile into Ops Manager.
 
-NOTE: the Elastic Runtime product is a fairly large file, in excess of 5GB.  The process of downloading the product, and then uploading it to the Ops Manager can take time.  It is often faster to ssh to the Ops Manager, and download the tile directly onto that VM, and then instruct Ops Manager to ingest that local file.  _TODO: provide instructions for how to do that._
+NOTE: The Elastic Runtime product is a fairly large file, in excess of 5GB.  The process of downloading the product, and then uploading it to the Ops Manager can take time.  It is often faster to ssh to the Ops Manager, and download the tile directly onto that VM, and then instruct Ops Manager to ingest that local file.  _TODO: provide instructions for how to do that._
 
 _TODO: perhaps instruct to not download the latest version, to leave room for the subsequent upgrade lab instructions_
 
@@ -133,7 +133,7 @@ If necessary, follow the instructions in http://docs.pivotal.io/pivotalcf/1-9/cu
 
 Finally, complete the installation, as instructed http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#complete[here^].
 
-WARNING: at this point, it would be wise to get your instructor to validate all your settings _before_ you click _Apply Changes_.
+WARNING: At this point, it would be wise to get your instructor to validate all your settings _before_ you click _Apply Changes_.
 
 The installation may take 2 hours.
 

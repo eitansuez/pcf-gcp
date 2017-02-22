@@ -24,4 +24,4 @@ Furnish each student (or pair of students):
 
 . a private key and certificate pair to be used in conjunction with SSL configuration of the CF installation.  See <<Generating SSL Private Key and Certificate for Student>>.
 
-NOTE: after students finish the terraform part of the installation, they will have a Google Cloud DNS zone configured for their subdomain.  Instructors will need to create an NS record for each subdomain.
+NOTE: After students finish the terraform part of the installation, they will have a Google Cloud DNS zone configured for their subdomain.  Instructors will need to create an NS record for each subdomain.
