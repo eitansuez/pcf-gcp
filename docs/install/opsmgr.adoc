@@ -5,7 +5,7 @@ Welcome!
 Your instructor has prepared the following on your behalf:
 
 - A Google Cloud Project
-- A private key and SSL certificate to be used in conjunction with installing PCF
+- A private key file, and a corresponding SSL certificate file, to be used in conjunction with installing PCF
 
 
 === Logging in to GCP
@@ -13,51 +13,32 @@ Your instructor has prepared the following on your behalf:
 - in a browser, navigate to the https://console.cloud.google.com/[GCP console^] and log in.
 - navigate to your project by selecting your project name from the projects "dropdown" in the page header.
 
+=== Installing the Requisite Client Tools
 
-=== Creating your JumpBox VM instance
+To install PCF on GCP, you'll need the following items:
 
-In a manner _similar to_ what is described http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-om-deploy.html[here^], we will be creating a VM instance from an image available in Google Cloud Storage at this file path: {image_cloudstorage_file}
+- the https://cloud.google.com/sdk/[Google Cloud SDK^], which provides the `gcloud` CLI
+- the use of a Pivotal project containing Terraform scripts designed for PCF, named https://github.com/pivotal-cf/terraforming-gcp[terraforming-gcp^].  This course is based on  https://github.com/pivotal-cf/terraforming-gcp/releases/tag/v0.6.0[release version 0.6.0^]
+- Hashicorp's https://www.terraform.io/[Terraform^].  Be sure to use https://releases.hashicorp.com/terraform/0.8.4/[version 0.8.4^]
 
-* Navigate to _Compute Engine_
-* Select _Images_
-* Click _Create Image_
-* Complete the following fields:
-** Name: _jumpbox-image_
-** Source: _Cloud Storage file_
-** Cloud Storage file: _{image_cloudstorage_file}_
-* Click _Create_
+==== Instructions
 
-Wait for the image to be created in your project.  This may take a minute.
+Using the above links:
 
-Now that we have an image, let's create an instance:
+. Download and install the Google Cloud SDK (you can verify the installation with the command `gcloud --version`)
+. Download and unzip the terraforming-gcp project, release version 0.6.0, to a subfolder of your home directory
+. Download and install Hashicorp's Terraform, version 0.8.4 (you can verify the installation with the command `terraform --version`)
 
-* Select (check) the image
-* Click _Create Instance_
-* Name the instance _jumpbox_
-* Click: _Create_
+Log in to google cloud project from the command line, using the gcloud sdk
 
-Wait for the image instance to come up and initialize.
-
-=== Accessing the JumpBox VM
-
-- ssh in to your instance:
-+
-[source.terminal]
-----
-gcloud compute ssh ubuntu@jumpbox
-----
-
-- log in to google cloud project from the command line, using the gcloud sdk
-+
 [source.terminal]
 ----
 gcloud init
 ----
-+
 
-** When prompted to select an account, select option 2: _Log in with a new account_, and follow the instructions to authenticate
-** Enter your project id when prompted for it
-** Select the default region where resources should be created (us-central1)
+* When prompted to select an account, select option 2: _Log in with a new account_, and follow the instructions to authenticate
+* Enter your project id when prompted for it
+* Select the default region where resources should be created (us-central1)
 
 
 === Initial Configuration
@@ -82,7 +63,7 @@ gcloud iam service-accounts keys create '{key_json_filename}' --iam-account 'ter
 gcloud projects add-iam-policy-binding {project_id} --member 'serviceAccount:terraform-service-account@{project_id}.iam.gserviceaccount.com' --role 'roles/editor'
 ----
 +
-NOTE: if you prefer, you can follow along http://docs.pivotal.io/pivotalcf/customizing/gcp-prepare-env.html#iam_account[here^] to create the account and download the key via the google cloud console web-based ui  ..but then don't forget to issue the third command above to add the IAM policy binding to give the account the role _roles/editor_
+NOTE: If you prefer, you can follow along http://docs.pivotal.io/pivotalcf/customizing/gcp-prepare-env.html#iam_account[here^] to create the account and download the key via the google cloud console web-based ui  ..but then don't forget to issue the third command above to add the IAM policy binding to give the account the role _roles/editor_
 
 . Enable access to three GCP APIs: Resource Manager API, Cloud DNS API, Identity & Access Management API.
    See http://docs.pivotal.io/pivotalcf/customizing/gcp-prepare-env.html#enable_compute_resource_api[these instructions^] for how to do this for the Resource Manager API. Don't forget to also enable the Google Cloud DNS API, and Google Identity and Access Management API in a similar fashion.

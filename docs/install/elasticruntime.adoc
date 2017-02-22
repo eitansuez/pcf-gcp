@@ -137,7 +137,7 @@ TIP: While changes are applied, you can view the stream from the bosh director's
 [.thumb]
 image::applying_changes.png[Show verbose output]
 
-**Congratulations!** you have installed Pivotal Elastic Runtime.
+Congratulations, you have installed Pivotal Elastic Runtime.
 
 === After the Install (to be completed later)
 

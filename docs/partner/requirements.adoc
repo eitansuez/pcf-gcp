@@ -1,28 +1,22 @@
 == Partner Requirements
 
-=== Domain name
-
-When delivering PCF Administrator training using Google Cloud Platform (GCP), a partner needs to have a registered domain name, from which subdomains can be created for each student. For example, assuming the domain name `example.org`, and a student named John Smith
-  with username `jsmith`, their PCF instance domain name would have the suffix `jsmith.example.org`.
-
 === Tooling
 
-The installation of PCF on GCP requires:
+The installation of PCF on GCP requires the following client software, which students are instructed to install on their machines:
 
-- the use of the gcloud CLI, which is part of the Google Cloud SDK
-- the tool https://www.terraform.io/[Terraform^], to setup the infrastructure
-- the use of a Pivotal project containing Terraform scripts designed for PCF
+- the https://cloud.google.com/sdk/[Google Cloud SDK^], which provides the `gcloud` CLI
+- the use of a Pivotal project containing Terraform scripts designed for PCF, named https://github.com/pivotal-cf/terraforming-gcp[terraforming-gcp^].  This course is based on  https://github.com/pivotal-cf/terraforming-gcp/releases/tag/v0.6.0[release version 0.6.0^]
+- Hashicorp's https://www.terraform.io/[Terraform^].  Be sure to use https://releases.hashicorp.com/terraform/0.8.4/[version 0.8.4^]
 
-For convenience, a VM image in Google Cloud Storage (named _{image_cloudstorage_file}_) has been prepared with the above items pre-installed:
+=== Domain name
 
- - https://cloud.google.com/sdk/[Google Cloud SDK^]
- - https://releases.hashicorp.com/terraform/0.8.4/[Terraform v0.8.4^]
- - a copy of the https://github.com/pivotal-cf/terraforming-gcp[terraforming-gcp project^] https://github.com/pivotal-cf/terraforming-gcp/releases/tag/v0.6.0[v0.6.0 release^] installed at `~/terraforming-gcp`
+Have a registered domain name, from which students can create subdomains.
 
-Students are free to setup their local machines with the above tools on their own.  For convenience, they can opt instead to instantiate a VM with the tools pre-installed.  Instructions are provided in the lab.
+For example, assuming the domain name `example.org`, and a student named John Smith with username `jsmith`, their PCF instance domain name would have the suffix `jsmith.example.org`.
 
+This maps nicely to the concept of an "env_name", one of the variables used by the terraforming-gcp project.
 
-=== Additional Requirements
+=== Requirements
 
 Furnish each student (or pair of students):
 
