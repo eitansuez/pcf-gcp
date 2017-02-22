@@ -15,6 +15,23 @@ The two main tasks we will accomplish in this lab are:
 
 Setting up the BOSH Director is a prerequisite step to installing Cloud Foundry.
 
+== DNS configuration
+
+Before we can access our Ops Manager, your instructor will need to create an NS record (from their top-level domain's zone) for your subdomain `{env_name}.{domain_name}`.
+
+In the Google Cloud Console, navigate to Networking -> Cloud DNS; you should see a zone named _{env_name}-zone_ listed.
+
+Click on the zone; you'll notice an NS-type entry for the subdomain, as shown below.
+
+[.thumb]
+.Cloud DNS view of your hosted zone
+image::hosted_zone.png[Cloud DNS]
+
+-> Communicate the value of the _Data_ column to your instructor (which should be a list of google name servers).
+
+Shortly after the NS record is created, you should be able to verify proper DNS resolution for any host under your subdomain using a client such as `dig` or `nslookup`.
+
+
 == Instructions
 
 The Ops Manager runs a web server that is accessible at https://pcf.{env_name}.{domain_name}/[^].

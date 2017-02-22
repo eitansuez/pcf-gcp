@@ -48,18 +48,6 @@ Be sure to click _Save_.
 
 General instructions for this section can be found in http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#assign-az[Step 3^] of the deployment instructions.
 
-== Hosted Zone NS Record
-
-Once more, the terraform script we ran also created a hosted zone and DNS A records on our behalf.  This can be seen in the following screenshot, from the Google Cloud Console's Cloud DNS section.
-
-[.thumb]
-.Cloud DNS view of your hosted zone
-image::hosted_zone.png[CloudDNS]
-
-In order for DNS to function, your instructor will need to create an NS record from their top-level domain's hosted zone for your subdomain `{env_name}.{domain_name}`.
-
-After this is done, you should be able to verify proper DNS resolution for any host under your subdomain using a client such as `dig` or `nslookup`.
-
 == Domains
 
 Next specify your system and apps domains as follows:
