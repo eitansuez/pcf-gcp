@@ -96,7 +96,7 @@ For this tab, simply enter your email address in the required _E-mail address_ f
 
 In the google cloud console, navigate to Google Cloud Storage.  Review your list of buckets.
 
-Four buckets should have been created for you by the terraform script:  gcp-buildpacks, gcp-droplets, gcp-packages, and gcp-resources, as shown in the screenshot below.
+Four buckets should have been created for you by the terraform script:  {env_name}-buildpacks, {env_name}-droplets, {env_name}-packages, and {env_name}-resources, as shown in the screenshot below.
 
 [.thumb]
 .Google Cloud Storage buckets listing
@@ -112,9 +112,9 @@ The configuration of the _Resource Config_ tab is described in http://docs.pivot
 
 In summary, three text fields in the column labeled "Load Balancers" must be filled, one for each of the rows labeled _Router_, _Diego Brain_, and (optionally) _TCP Router_, as follows:
 
-* Router: `tcp:gcp-cf-ws,http:gcp-httpslb`
-* Diego Brain: `tcp:gcp-cf-ssh`
-* TCP Router: `tcp:gcp-cf-tcp`
+* Router: `tcp:{env_name}-cf-ws,http:{env_name}-httpslb`
+* Diego Brain: `tcp:{env_name}-cf-ssh`
+* TCP Router: `tcp:{env_name}-cf-tcp`
 
 The above values are references to the load balancers that were automatically created and configured by the terraform script.  Be sure to use those and not the names cited as examples from the documentation.
 
