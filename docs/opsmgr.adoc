@@ -107,6 +107,7 @@ TIP: To install a more recent version of the Ops Manager, visit the https://netw
 
 . Run `terraform apply` and watch it create the IAAS foundation that will be used to install Cloud Foundry.
 
+NOTE: One specific operation -- the creation of an image from a Google Cloud Storage file -- can take several minutes.  The bulk of the terraform operation's time is spent on that one task.  You can navigate to Google Compute Engine -> Images and observe GCP in the act of creating that image in your project.
 
 == Validate Installation
 
