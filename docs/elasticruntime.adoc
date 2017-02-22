@@ -1,10 +1,15 @@
-== Installing Elastic Runtime
+= Installing Elastic Runtime
+Eitan Suez <esuez@pivotal.io>
+v0.1, 2017
+:domain_name: {{domain_name}}
+:env_name: {{env_name}}
+
 
 The bosh director installed in the previous lab is the means by which the Ops Manager will now deploy Cloud Foundry.  The main component of Cloud Foundry is known as the Elastic Runtime.
 
 The general instructions for installing the Elastic Runtime on GCP are available http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html[here^].  Follow the instructions below, which reference specific subsections from the official Pivotal instructions.
 
-=== Obtain and Upload Elastic Runtime
+== Obtain and Upload Elastic Runtime
 
 . Follow http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#download-er[Steps 1 and 2^] to download the elastic runtime tile and then to add (or import) the tile into Ops Manager.
 
@@ -32,7 +37,7 @@ image::ert_configuration.png[Elastic Runtime Configuration Screen]
 
 Let's proceed to configure each of the relevant sections of the Elastic Runtime.  In the instructions that follow, I will often refer to each section as a "tab".
 
-=== Assign AZs and Networks
+== Assign AZs and Networks
 
 The terraform script we ran created three availability zones for us (also abbreviated as AZ's).  It also created three separate subnets.
 
@@ -43,7 +48,7 @@ Be sure to click _Save_.
 
 General instructions for this section can be found in http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#assign-az[Step 3^] of the deployment instructions.
 
-=== Hosted Zone NS Record
+== Hosted Zone NS Record
 
 Once more, the terraform script we ran also created a hosted zone and DNS A records on our behalf.  This can be seen in the following screenshot, from the Google Cloud Console's Cloud DNS section.
 
@@ -55,7 +60,7 @@ In order for DNS to function, your instructor will need to create an NS record f
 
 After this is done, you should be able to verify proper DNS resolution for any host under your subdomain using a client such as `dig` or `nslookup`.
 
-=== Domains
+== Domains
 
 Next specify your system and apps domains as follows:
 
@@ -73,7 +78,7 @@ For example, Cloud Controller, which furnishes the PCF API endpoint, will have t
 Finally, if you push an app named `hello-world`, its route will by default be hello-world.apps.{env_name}.{domain_name}.
 ****
 
-=== Networking
+== Networking
 
 To configure networking, follow http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#networking[Step 6^] from the official instructions for GCP.
 
@@ -84,15 +89,15 @@ Essentially, you'll:
 * make sure to _disable SSL certificate verification_, and finally
 * click _Save_ to apply changes.
 
-=== Application Security Groups
+== Application Security Groups
 
 Complete http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#app-security[Step 9^].
 
-=== Internal MySQL
+== Internal MySQL
 
 For this tab, simply enter your email address in the required _E-mail address_ field and click _Save_.  Leave other options unchanged.
 
-=== File Storage
+== File Storage
 
 In the google cloud console, navigate to Google Cloud Storage.  Review your list of buckets.
 
@@ -106,7 +111,7 @@ Follow the instructions in http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-
 
 Don't forget to click _Save_.
 
-=== Resource Config
+== Resource Config
 
 The configuration of the _Resource Config_ tab is described in http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#config-lb[Step 21^].
 
@@ -120,11 +125,11 @@ The above values are references to the load balancers that were automatically cr
 
 Click _Save_.
 
-=== Stemcell
+== Stemcell
 
 If necessary, follow the instructions in http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#stemcell[Step 22^] to upload Stemcell to the bosh director.  In some cases, the bosh director already has the Stemcell in which case no action is necessary on your part.
 
-=== Complete the installation
+== Complete the installation
 
 Finally, complete the installation, as instructed http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#complete[here^].
 
@@ -139,7 +144,7 @@ image::applying_changes.png[Show verbose output]
 
 Congratulations, you have installed Pivotal Elastic Runtime.
 
-=== After the Install (to be completed later)
+== After the Install (to be completed later)
 
 . After the installation is complete, view the `Change Logs` (under `admin` at top left). If the installation was not successful, see the Installation Troubleshooting section.
 
@@ -149,7 +154,7 @@ Congratulations, you have installed Pivotal Elastic Runtime.
 
 . Explore the `Logs` tab in the `Pivotal Elastic Runtime` tile. This contain logs obtained by clicking on the Logs icon under the `Status` tab.
 
-==== Disable Errands
+=== Disable Errands
 
 You may have noticed that, after elastic runtime installs, a number of errands are run, such as the installation of the apps manager.  Technically these errands don't need to run each time we modify the configuration of the elastic runtime (for example to increase the number of Diego Cells that we wish to deploy).
 

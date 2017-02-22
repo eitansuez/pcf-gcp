@@ -4,10 +4,10 @@ v0.1, 2017:  GCP-specific Lab Instructions
 :domain_name: {{domain_name}}
 :username: {{username}}
 
-include::partner/requirements.adoc[]
+include::requirements/main.adoc[]
 
 [appendix]
-include::partner/quota.adoc[]
+include::requirements/quota.adoc[]
 
 [appendix]
-include::partner/keys.adoc[]
+include::requirements/keys.adoc[]

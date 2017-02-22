@@ -1,7 +1,15 @@
-= PCF Administration - GCP
+= PCF Administration with Google Cloud Platform
 Eitan Suez <esuez@pivotal.io>
-v0.1, 2017:  GCP-specific Lab Instructions
+v0.1, 2017
 
-.Documents
-- link:partner{outfilesuffix}[Partner Requirements^]
-- link:install{outfilesuffix}[Terraforming GCP^]
+== Course Setup
+
+link:requirements{outfilesuffix}[Requirements^]
+
+== Labs
+
+=== Installations
+
+- link:opsmgr{outfilesuffix}[Ops Manager^]
+- link:boshdirector{outfilesuffix}[Bosh Director^]
+- link:elasticruntime{outfilesuffix}[Elastic Runtime^]
