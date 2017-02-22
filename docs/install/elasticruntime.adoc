@@ -1,0 +1,185 @@
+== Installing Elastic Runtime
+
+The bosh director installed in the previous lab is the means by which the Ops Manager will now deploy Cloud Foundry.  The main component of Cloud Foundry is known as the Elastic Runtime.
+
+The general instructions for installing the Elastic Runtime on GCP are available http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html[here^].  Follow the instructions below, which reference specific subsections from the official Pivotal instructions.
+
+=== Obtain and Upload Elastic Runtime
+
+. Follow http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#download-er[Steps 1 and 2^] to download the elastic runtime tile and then to add (or import) the tile into Ops Manager.
+
+NOTE: the Elastic Runtime product is a fairly large file, in excess of 5GB.  The process of downloading the product, and then uploading it to the Ops Manager can take time.  It is often faster to ssh to the Ops Manager, and download the tile directly onto that VM, and then instruct Ops Manager to ingest that local file.  _TODO: provide instructions for how to do that._
+
+_TODO: perhaps instruct to not download the latest version, to leave room for the subsequent upgrade lab instructions_
+
+Here's a screenshot of the Ops Manager user interface with some products imported from the https://network.pivotal.io/[Pivotal Network^]:
+
+[.thumb]
+image::opsmgr.png[Ops Manager]
+
+And here's what it looks like after clicking that '+' button that adds the tile to the main panel.  As you can see below, the tile is orange, implying that it needs configuration before it can be installed.
+
+[.thumb]
+image::ert_tile_orange.png[Elastic Runtime "tile", before configuration]
+
+Click the tile to configure it.
+
+[.thumb]
+image::ert_configuration.png[Elastic Runtime Configuration Screen]
+
+=== Assign AZs and Networks
+
+select one of the three availability zones for placement of singleton jobs.
+select the xxx network
+
+=== Hosted Zone NS Record
+
+instructor must add ns records for your hosted zone, as follows:
+
+navigate to cloud dns.  you will see a zone named gcp-zone.  select it.
+you'll see that there's one NS type record typically with four name servers listed.
+
+provide your instructor that information:  the dns name and the list of name servers.
+the instructor will need to add that NS record for your subdomain in order for dns to resolve properly.
+once this is done, you can proceed to the next step.
+
+Before you can apply these changes, your instructor will need to create NS records for your {env_name}.{domain_name} hosted zone.  Only then will the application of these changes succeed.
+
+=== Domains
+
+sys.{env_name}.{domain_name}
+apps.{env_name}.{domain_name}
+
+blurb with example here..
+
+. Browse to the `Domains` section (left margin).
++
+[.thumb]
+image::domains.png[Domains]
++
+Enter the following values for the system and apps domains, and then click `Save`.
++
+[cols=2*]
+|===
+| System Domain
+| sys.{env_name}.{domain_name}
+
+| Apps Domain
+| apps.{env_name}.{domain_name}
+|===
+
+.What do these settings control?
+****
+Routes for PCF system components will have as their suffix the system domain, while the routes of applications pushed to cloud foundry will have as their suffix the apps domain.
+
+For example, Cloud Controller, which furnishes the PCF API endpoint, will have the route `api.sys.{env_name}.{domain_name}` (this is the URL you use in conjunction with the `cf login` command). The PCF Apps Manager route will also be a function of the system domain:  `apps.sys.{env_name}.{domain_name}`).
+
+Finally, if you push an app named `hello-world`, its route will by default be hello-world.apps.{env_name}.{domain_name}.
+****
+
+=== Networking
+
+select radio button "Forward SSL to Elastic Runtime Router"
+
+paste in cert and key
+check disable ssl verification
+save
+
+. Browse to the `Networking` section (left margin).
++
+[.thumb]
+image::networking.png[Networking]
++
+Follow the official instructions (step 6) for GCP   http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#networking[here].
++
+Essentially, you'll:
+* select the option to _Forward SSL to Elastic Runtime Router_,
+* supply the SSL certificate and private key that were provided to you by your instructor,
+* make sure to _disable SSL certificate verification_, and finally
+* click _Save_ to apply changes.
+
+
+=== Application Security Groups
+
+review application security groups - follow instructions for step 9
+http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#app-security[here]
+
+. Browse to the `Application Security Groups` section (left margin).
++
+[.thumb]
+image::application-security-groups.png[Application Security Groups]
++
+Type `X` to acknowledge that you understand this message.  Click `Save`.
+
+=== Internal MySQL
+
+in the email address field, enter your email address, click save.
+
+=== File Storage
+
+in the google cloud console, navigate to google cloud storage.  review your list of buckets.
+four buckets should have been created for you:  gcp-buildpacks, gcp-droplets, gcp-packages, and gcp-resources.
+
+follow the instructions here to configure google cloud storage and these buckets as the source of your cloud controller file system:
+
+http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#filestore
+
+=== Resource Config
+
+explained in configure load balancers - step 21 -
+http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#config-lb[here]
+
+in summary, three text fields in the column labeled "load balancers" must be filled, as follows:
+
+router -
+tcp:gcp-cf-ws,http:gcp-httpslb
+
+diego brain -
+tcp:gcp-cf-ssh
+
+tcp router -
+tcp:gcp-cf-tcp
+
+You'll need to paste the following three values in the load balancer column text fields corresponding to each of these three rows:
+
+. Router: tcp:gcp-cf-ws,http:gcp-httpslb
+. Diego Brain: tcp:gcp-cf-ssh
+. TCP Router: tcp:gcp-cf-tcp
+
+TODO:  add a screenshot here?
+
+=== Stemcell
+
+if necessary, obtain and upload the necessary stemcell to bosh director.  see instructions
+http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#stemcell[here]
+
+
+=== Complete the installation
+
+finally complete the installation:
+
+http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#complete[here]
+
+
+. **Before Installing/Applying Changes - get your instructor to validate all your settings**
+
+. When you have completed **ALL** of the above configuration steps, select `Apply changes` (right margin) in the Ops Manager interface.
++
+[.thumb]
+image::elastic-runtime-apply-changes.png[Apply Changes]
+
+The installation may take over 3 hours. It is a good idea to watch to the first few minutes just in case there is an early installation failure.  If there is a failure, view the troubleshooting guide, below.
+
+=== After the Install (to be completed later)
+
+. After the installation is complete, view the `Change Logs` (under `admin` at top left). If the installation was not successful, see the Installation Troubleshooting section.
+
+. Explore the `Status` tab in the `Pivotal Elastic Runtime` tile. It lists the IP addresses and the status of the VMs related to the installation.
+
+. Explore the `Credentials` tab in the `Pivotal Elastic Runtime` tile. It contains the username and auto-generated passwords that are used for logging into components.
+
+. Explore the `Logs` tab in the `Pivotal Elastic Runtime` tile. This contain logs obtained by clicking on the Logs icon under the `Status` tab.
+
+TODO: add instructions to disable errands
+
+**Congratulations!** you have installed Pivotal Elastic Runtime.

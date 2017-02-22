@@ -12,3 +12,5 @@ v0.1, 2017:  GCP-specific Lab Instructions
 include::install/opsmgr.adoc[]
 
 include::install/boshdirector.adoc[]
+
+include::install/elasticruntime.adoc[]

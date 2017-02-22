@@ -11,8 +11,9 @@ Setting up the BOSH Director is a prerequisite step to installing Cloud Foundry.
 
 === Instructions
 
-. The Ops Manager runs a web server that is accessible at `pcf.{env_name}.{domain_name}`.
-  Open a web browser and visit that page.
+The Ops Manager runs a web server that is accessible at https://pcf.{env_name}.{domain_name}/.
+
+. Open a web browser and visit that page.
 
 . follow the http://docs.pivotal.io/pivotalcf/customizing/gcp-om-config.html[Configuring Ops Manager^] instructions from the PCF documentation
 
