@@ -48,7 +48,7 @@ Make the following selections as you work through setting up the director:
 . skip the pager duty and email plugins configuration
 . create three availability zones
 . create three networks to match the three subnets that were created by the terraform scripts
-. select the `{env_name}-ops-manager-subnet` in step 6:  that's the subnet in which the bosh director should be installed
+. select the `{env_name}-ops-manager-subnet` in http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-om-config.html#assign-azs[step 6^]:  that's the subnet in which the bosh director should be installed
 . apply changes, it may take up to ten minutes for this to finish.
 
 In the Google Cloud Console, visit the _Compute Engine -> VM Instances_ section and observe that a new VM will have been created for the BOSH Director.
