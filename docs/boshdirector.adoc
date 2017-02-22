@@ -51,7 +51,7 @@ Make the following selections as you work through setting up the director:
 . select the `{env_name}-ops-manager-subnet` in step 6:  that's the subnet in which the bosh director should be installed
 . apply changes, it may take up to ten minutes for this to finish.
 
-In the Google Cloud Console, visit the _compute engine -> vm instances_ section and observe that a new VM will be created for the BOSH Director.
+In the Google Cloud Console, visit the _Compute Engine -> VM Instances_ section and observe that a new VM will have been created for the BOSH Director.
 
 Congratulations, you have now deployed the BOSH Director.
 
