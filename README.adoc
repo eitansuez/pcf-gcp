@@ -1,0 +1,18 @@
+This repository relates to the development of course materials for the PCF Administrator course using the Google Cloud Platform.  It is a work in progress at the moment.  Most of the lab instructions have yet to be reviewed and revised for GCP.
+
+To generate the course content as html:
+
+----
+gradle clean asciidoctor
+----
+
+After reviewing and modifying the `manifest.yml` file, you can publish the html version of the course contents to PCF with the following command:
+
+----
+cf push
+----
+
+At the moment, a version of this course is published to https://pcfadmin-gcp.cfapps.io/[this url^].
+
+Thanks.
+/ Eitan
