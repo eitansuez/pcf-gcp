@@ -105,9 +105,26 @@ The configuration of the _Resource Config_ tab is described in http://docs.pivot
 
 In summary, three text fields in the column labeled "Load Balancers" must be filled, one for each of the rows labeled _Router_, _Diego Brain_, and (optionally) _TCP Router_, as follows:
 
-* Router: `tcp:{env_name}-cf-ws,http:{env_name}-httpslb`
-* Diego Brain: `tcp:{env_name}-cf-ssh`
-* TCP Router: `tcp:{env_name}-cf-tcp`
+* Router:
++
+[source]
+----
+tcp:{{env_name}}-cf-ws,http:{{env_name}}-httpslb
+----
+
+* Diego Brain:
++
+[source]
+----
+tcp:{{env_name}}-cf-ssh
+----
+
+* TCP Router:
++
+[source]
+----
+tcp:{{env_name}}-cf-tcp
+----
 
 The above values are references to the load balancers that were automatically created and configured by the terraform script.  Be sure to use those and not the names cited as examples from the documentation.
 
@@ -117,7 +134,7 @@ Click _Save_.
 
 If necessary, follow the instructions in http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#stemcell[Step 22^] to upload Stemcell to the bosh director.  In some cases, the bosh director already has the Stemcell in which case no action is necessary on your part.
 
-== Complete the installation
+== Complete the Installation
 
 Finally, complete the installation, as instructed http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#complete[here^].
 
