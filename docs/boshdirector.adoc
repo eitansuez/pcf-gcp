@@ -1,6 +1,7 @@
 = Installing Bosh Director
 Eitan Suez <esuez@pivotal.io>
 v0.1, 2017
+:project_id: {{project_id}}
 :domain_name: {{domain_name}}
 :env_name: {{env_name}}
 :director_ip_address: {{director_ip_address}}
@@ -42,26 +43,59 @@ The Ops Manager runs a web server that is accessible at https://pcf.{env_name}.{
 
 Make the following selections as you work through setting up the director:
 
-. Select the "internal authentication" method when setting up access to your Ops Manager
+=== Access Ops Manager
+
+Select the "internal authentication" method when setting up access to your Ops Manager.  Select a username, password, passphrase.
+
+=== GCP Config
+
+On http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-om-config.html#gcp-config[this step^], just specify your project id ({project_id}) and press Save.
+
+NOTE:  if you encounter an error message stating that your ops manager service account cannot see your GCP project, it is an indication of a possible bug whereby the service account was created with insufficient permissions.  Resolve this issue by navigating in your Google Cloud Console to the IAM & Admin -> IAM section.  Configure the service account named _{env_name} Ops Manager VM Service Account_ by adding the role _Compute Security Admin_ (don't foget to press "Save").
+
+=== Director Config
+
+See http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-om-config.html#director-config[instructions section^].
+
 . Enable VM Resurrector plugin (check)
 . Enable _post deploy scripts_ (check)
 . Skip the pager duty and email plugins configuration
-. Create three availability zones (e.g. us-central1-a, us-central1-b, us-central1-c)
-+
+
+Press _Save_.
+
+=== Create Availability Zones
+
+See http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-om-config.html#az[instructions section^].
+
+Create three availability zones (e.g. us-central1-a, us-central1-b, us-central1-c).
+
 [.thumb]
 .Availability Zone Configuration
 image::az_config.png[Availability Zone Configiuration]
 
-. Create three networks to match the three subnets that were created by the terraform scripts.  Here's an example configuration for the elastic runtime network:
-+
+Press _Save_.
+
+
+=== Create Networks
+
+See http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-om-config.html#network[instructions section^].
+
+Create three networks to match the three subnets that were created by the terraform scripts.  Here's an example configuration for the elastic runtime network:
+
 [.thumb]
 .Example Network Configuration: Elastic Runtime
 image::ert_network_config.png[Example Network Configuration,width="50%"]
 
-. Select the `{env_name}-ops-manager-subnet` in http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-om-config.html#assign-azs[step 6^]:  that's the subnet in which the bosh director should be installed
-. Apply changes, it may take up to ten minutes for this to finish.
 
-This may be a good time to stretch and grab a cup of coffee.
+=== Assign AZs and Newtorks
+
+. Select the `{env_name}-ops-manager-subnet` in http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-om-config.html#assign-azs[step 6^]:  that's the subnet in which the bosh director should be installed
+
+Press _Save_.
+
+=== Apply Changes
+
+Go back to the installation dashboard and click _Apply Changes_.  It may take up to ten minutes for this to finish. This may be a good time to stretch and grab a cup of coffee.
 
 In the Google Cloud Console, visit the _Compute Engine -> VM Instances_ section and observe that a new VM will have been created for the BOSH Director.
 
