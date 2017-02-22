@@ -80,9 +80,9 @@ gcloud compute ssh ubuntu@{{env_name}}-ops-manager
 +
 NOTE: The above command dynamically creates a key pair for logging in to the VM
 +
-The bosh client is pre-installed on Ops Manager VM.  For security, the bosh director VM is usually not made accessible from the outside world.  the Ops Manager VM serves as a bastion VM from which we can communicate with the bosh director.
+The bosh client is pre-installed on Ops Manager VM.  For security, the bosh director VM is usually not made accessible from the outside world.  The Ops Manager VM serves as a bastion VM from which we can communicate with the bosh director.
 
-. target, and login to the bosh director:
+. Target, and login to the bosh director:
 +
 [source.terminal]
 ----
