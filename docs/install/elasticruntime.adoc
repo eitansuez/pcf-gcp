@@ -15,58 +15,54 @@ _TODO: perhaps instruct to not download the latest version, to leave room for th
 Here's a screenshot of the Ops Manager user interface with some products imported from the https://network.pivotal.io/[Pivotal Network^]:
 
 [.thumb]
+.Ops Manager
 image::opsmgr.png[Ops Manager]
 
 And here's what it looks like after clicking that '+' button that adds the tile to the main panel.  As you can see below, the tile is orange, implying that it needs configuration before it can be installed.
 
 [.thumb]
-image::ert_tile_orange.png[Elastic Runtime "tile", before configuration]
+.Elastic Runtime "tile", before configuration
+image::ert_tile_orange.png[Elastic Runtime tile before configuration]
 
 Click the tile to configure it.
 
 [.thumb]
+.Elastic Runtime Configuration Screen
 image::ert_configuration.png[Elastic Runtime Configuration Screen]
+
+Let's proceed to configure each of the relevant sections of the Elastic Runtime.  In the instructions that follow, I will often refer to each section as a "tab".
 
 === Assign AZs and Networks
 
-select one of the three availability zones for placement of singleton jobs.
-select the xxx network
+The terraform script we ran created three availability zones for us (also abbreviated as AZ's).  It also created three separate subnets.
+
+. Select any of the three availability zones as the destination for "singleton jobs."
+. From the dropdown, select the network named _pcf-ert-net_
+
+Be sure to click _Save_.
+
+General instructions for this section can be found in http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#assign-az[Step 3^] of the deployment instructions.
 
 === Hosted Zone NS Record
 
-instructor must add ns records for your hosted zone, as follows:
+Once more, the terraform script we ran also created a hosted zone and DNS A records on our behalf.  This can be seen in the following screenshot, from the Google Cloud Console's Cloud DNS section.
 
-navigate to cloud dns.  you will see a zone named gcp-zone.  select it.
-you'll see that there's one NS type record typically with four name servers listed.
+[.thumb]
+.Cloud DNS view of your hosted zone
+image::hosted_zone.png[CloudDNS]
 
-provide your instructor that information:  the dns name and the list of name servers.
-the instructor will need to add that NS record for your subdomain in order for dns to resolve properly.
-once this is done, you can proceed to the next step.
+In order for DNS to function, your instructor will need to create an NS record from their top-level domain's hosted zone for your subdomain `{env_name}.{domain_name}`.
 
-Before you can apply these changes, your instructor will need to create NS records for your {env_name}.{domain_name} hosted zone.  Only then will the application of these changes succeed.
+After this is done, you should be able to verify proper DNS resolution for any host under your subdomain using a client such as `dig` or `nslookup`.
 
 === Domains
 
-sys.{env_name}.{domain_name}
-apps.{env_name}.{domain_name}
+Next specify your system and apps domains as follows:
 
-blurb with example here..
+. System Domain:  sys.{env_name}.{domain_name}
+. Apps Domain: apps.{env_name}.{domain_name}
 
-. Browse to the `Domains` section (left margin).
-+
-[.thumb]
-image::domains.png[Domains]
-+
-Enter the following values for the system and apps domains, and then click `Save`.
-+
-[cols=2*]
-|===
-| System Domain
-| sys.{env_name}.{domain_name}
-
-| Apps Domain
-| apps.{env_name}.{domain_name}
-|===
+And click _Save_.  These instructions correspond to http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#er-domain-config[Step 5^].
 
 .What do these settings control?
 ****
@@ -79,96 +75,69 @@ Finally, if you push an app named `hello-world`, its route will by default be he
 
 === Networking
 
-select radio button "Forward SSL to Elastic Runtime Router"
+To configure networking, follow http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#networking[Step 6^] from the official instructions for GCP.
 
-paste in cert and key
-check disable ssl verification
-save
-
-. Browse to the `Networking` section (left margin).
-+
-[.thumb]
-image::networking.png[Networking]
-+
-Follow the official instructions (step 6) for GCP   http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#networking[here].
-+
 Essentially, you'll:
+
 * select the option to _Forward SSL to Elastic Runtime Router_,
 * supply the SSL certificate and private key that were provided to you by your instructor,
 * make sure to _disable SSL certificate verification_, and finally
 * click _Save_ to apply changes.
 
-
 === Application Security Groups
 
-review application security groups - follow instructions for step 9
-http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#app-security[here]
-
-. Browse to the `Application Security Groups` section (left margin).
-+
-[.thumb]
-image::application-security-groups.png[Application Security Groups]
-+
-Type `X` to acknowledge that you understand this message.  Click `Save`.
+Complete http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#app-security[Step 9^].
 
 === Internal MySQL
 
-in the email address field, enter your email address, click save.
+For this tab, simply enter your email address in the required _E-mail address_ field and click _Save_.  Leave other options unchanged.
 
 === File Storage
 
-in the google cloud console, navigate to google cloud storage.  review your list of buckets.
-four buckets should have been created for you:  gcp-buildpacks, gcp-droplets, gcp-packages, and gcp-resources.
+In the google cloud console, navigate to Google Cloud Storage.  Review your list of buckets.
 
-follow the instructions here to configure google cloud storage and these buckets as the source of your cloud controller file system:
+Four buckets should have been created for you by the terraform script:  gcp-buildpacks, gcp-droplets, gcp-packages, and gcp-resources, as shown in the screenshot below.
 
-http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#filestore
+[.thumb]
+.Google Cloud Storage buckets listing
+image::gcs.png[Google Cloud Storage]
+
+Follow the instructions in http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#filestore[Step 13^] from the official instructions to use these buckets as the storage location for buildpacks, droplets, etc..
+
+Don't forget to click _Save_.
 
 === Resource Config
 
-explained in configure load balancers - step 21 -
-http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#config-lb[here]
+The configuration of the _Resource Config_ tab is described in http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#config-lb[Step 21^].
 
-in summary, three text fields in the column labeled "load balancers" must be filled, as follows:
+In summary, three text fields in the column labeled "Load Balancers" must be filled, one for each of the rows labeled _Router_, _Diego Brain_, and (optionally) _TCP Router_, as follows:
 
-router -
-tcp:gcp-cf-ws,http:gcp-httpslb
+* Router: `tcp:gcp-cf-ws,http:gcp-httpslb`
+* Diego Brain: `tcp:gcp-cf-ssh`
+* TCP Router: `tcp:gcp-cf-tcp`
 
-diego brain -
-tcp:gcp-cf-ssh
+The above values are references to the load balancers that were automatically created and configured by the terraform script.  Be sure to use those and not the names cited as examples from the documentation.
 
-tcp router -
-tcp:gcp-cf-tcp
-
-You'll need to paste the following three values in the load balancer column text fields corresponding to each of these three rows:
-
-. Router: tcp:gcp-cf-ws,http:gcp-httpslb
-. Diego Brain: tcp:gcp-cf-ssh
-. TCP Router: tcp:gcp-cf-tcp
-
-TODO:  add a screenshot here?
+Click _Save_.
 
 === Stemcell
 
-if necessary, obtain and upload the necessary stemcell to bosh director.  see instructions
-http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#stemcell[here]
-
+If necessary, follow the instructions in http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#stemcell[Step 22^] to upload Stemcell to the bosh director.  In some cases, the bosh director already has the Stemcell in which case no action is necessary on your part.
 
 === Complete the installation
 
-finally complete the installation:
+Finally, complete the installation, as instructed http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#complete[here^].
 
-http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#complete[here]
+WARNING: at this point, it would be wise to get your instructor to validate all your settings _before_ you click _Apply Changes_.
 
+The installation may take 2 hours.
 
-. **Before Installing/Applying Changes - get your instructor to validate all your settings**
+TIP: While changes are applied, you can view the stream from the bosh director's console in your Ops Manager user interface by clicking on _Show verbose output_, as shown in the screenshot below.
 
-. When you have completed **ALL** of the above configuration steps, select `Apply changes` (right margin) in the Ops Manager interface.
-+
 [.thumb]
-image::elastic-runtime-apply-changes.png[Apply Changes]
+image::applying_changes.png[Show verbose output]
 
-The installation may take over 3 hours. It is a good idea to watch to the first few minutes just in case there is an early installation failure.  If there is a failure, view the troubleshooting guide, below.
+**Congratulations!** you have installed Pivotal Elastic Runtime.
 
 === After the Install (to be completed later)
 
@@ -180,6 +149,13 @@ The installation may take over 3 hours. It is a good idea to watch to the first 
 
 . Explore the `Logs` tab in the `Pivotal Elastic Runtime` tile. This contain logs obtained by clicking on the Logs icon under the `Status` tab.
 
-TODO: add instructions to disable errands
+==== Disable Errands
 
-**Congratulations!** you have installed Pivotal Elastic Runtime.
+You may have noticed that, after elastic runtime installs, a number of errands are run, such as the installation of the apps manager.  Technically these errands don't need to run each time we modify the configuration of the elastic runtime (for example to increase the number of Diego Cells that we wish to deploy).
+
+Disabling these errands after a successful installation can save a significant amount of time, and so we recommend that you do so in the context of this course, as follows:
+
+. Click on the Elastic Runtime Tile in the Ops manager
+. Select the "tab" titled "Errands"
+. Uncheck each of the errands listed
+. Click _Save_ and apply changes back at the installation dashboard
