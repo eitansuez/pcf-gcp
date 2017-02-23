@@ -5,6 +5,7 @@ v0.1, 2017
 :domain_name: {{domain_name}}
 :env_name: {{env_name}}
 :key_json_filename: terraform.key.json
+:region: {{region}}
 
 
 Welcome!
@@ -45,7 +46,7 @@ gcloud init
 
 * When prompted to select an account, select option 2: _Log in with a new account_, and follow the instructions to authenticate
 * Enter your project id when prompted for it
-* Select the default region where resources should be created {{region}} - this should be the region that the class will be delivered in.
+* Select the default region where resources should be created: {region}. This should be the region that the class will be delivered in.
 
 
 == Initial Configuration
@@ -72,7 +73,7 @@ NOTE: If you prefer, you can follow along http://docs.pivotal.io/pivotalcf/custo
 . Setup project-wide SSH key and enable access to GCP APIs.  The instructions for these tasks are part of the Pivotal official documentation (_Step 4: Create a Project-Wide SSH Keypair for Your Project_ and _Step 5: Enable Google Cloud APIs_), and are available http://docs.pivotal.io/pivotalcf/customizing/gcp-prepare-env.html#keys[here^].
 
 +
-. Enable additional GCP APIs for the terraform script.  In addition to enabling the _Google Compute Engine API_ and the _Google Cloud Resource Manager API_ above, the terraform script will require you to also enable the additional APIs:
+. Enable additional GCP APIs for the terraform script.  In addition to enabling the _Google Compute Engine API_ and the _Google Cloud Resource Manager API_ above, the terraform script requires that you also enable these additional APIs:
 +
 * Google Cloud DNS API
 * Google Identity and Access Management (IAM) API
@@ -94,8 +95,8 @@ cd ~/terraforming-gcp
 You'll need to supply values for the following variables:
 
  - `project`: your project id ({project_id})
- - `region`: us-central1
- - `zones`: ["us-central1-a", "us-central1-b", "us-central1-c"]
+ - `region`: e.g. us-central1
+ - `zones`: e.g. ["us-central1-a", "us-central1-b", "us-central1-c"]
  - `env_name`: your username, e.g. {env_name}
  - `opsman_image_url`: https://storage.googleapis.com/ops-manager-us/pcf-gcp-1.9.2.tar.gz
 +
