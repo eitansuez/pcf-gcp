@@ -11,17 +11,7 @@ openssl genrsa -out {{username}}-key.pem 2048
 +
 2. create a certificate
 +
-[source.terminal]
-----
-openssl req -x509 -sha256 -new \
-  -key {{username}}-key.pem \
-  -out {{username}}-cert.pem \
-  -subj "/C=US/ST=Texas/L=Austin/O=Pivotal, Inc./OU=Education/CN=*.{{username}}.{{domain_name}}" \
-  -days 365 \
-  -config pcf-san.cnf
-----
-+
-..where `pcf-san.cnf` is an adaptation of `/usr/local/etc/openssl/openssl.cnf` revised as follows:
+First create a `pcf-san.cnf` file, which is an adaptation of `/usr/local/etc/openssl/openssl.cnf` revised as follows:
 +
 [source.terminal,diff,subs="attributes+"]
 ----
@@ -39,3 +29,16 @@ openssl req -x509 -sha256 -new \
 224a231
 > subjectAltName = @alt_names
 ----
++
+Now execute the `openssl` utility to create the certificate.
++
+[source.terminal]
+----
+openssl req -x509 -sha256 -new \
+  -key {{username}}-key.pem \
+  -out {{username}}-cert.pem \
+  -subj "/C=US/ST=Texas/L=Austin/O=Pivotal, Inc./OU=Education/CN=*.{{username}}.{{domain_name}}" \
+  -days 365 \
+  -config pcf-san.cnf
+----
++

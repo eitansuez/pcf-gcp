@@ -126,3 +126,24 @@ In your browser, use the Google Cloud Console to navigate to the Networking and 
 NOTE: This Terraform script sets up three availability zones, and three separate subnets, one each for ops VMs (Ops Manager and bosh director), Elastic Runtime, and Cloud Foundry services.
 
 Congratulations, you have deployed the infrastructure necessary to proceed with the installation.
+
+
+== Troubleshooting
+
+You may encounter the following error:
+
+----
+> Error applying plan: 1 error(s) occurred:
+
+* google_project.opsman_service_account_project: Error applying IAM policy for project "{{project_id}}": googleapi: Error 403: The caller does not have permission, forbidden
+----
+
+The above permission issue can be resolved by ensuring that the service account has the editor role:
+
+----
+$ gcloud projects add-iam-policy-binding {{project_id}} --member 'serviceAccount:terraform-service-account@{{project_id}}.iam.gserviceaccount.com' --role 'roles/editor'
+
+succeeded.
+----
+
+After invoking the above command, just re-run `terraform apply`.
