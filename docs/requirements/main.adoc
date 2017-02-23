@@ -20,7 +20,7 @@ This maps nicely to the concept of an "env_name", one of the variables used by t
 
 Furnish each student (or pair of students):
 
-. a GCP project that the student will own, with quota configured appropriately to deploy PCF.  See <<Suggested Quota>>.
+. a GCP project that the student will own, with quota to deploy PCF configured appropriately for the region the class will be delivered in.  See <<Suggested Quota>>.
 
 . a private key and certificate pair to be used in conjunction with SSL configuration of the CF installation.  See <<Generating SSL Private Key and Certificate for Student>>.
 

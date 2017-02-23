@@ -5,6 +5,7 @@ v0.1, 2017
 :domain_name: {{domain_name}}
 :env_name: {{env_name}}
 :key_json_filename: terraform.key.json
+:region: {{region}}
 
 
 Welcome!
@@ -45,14 +46,11 @@ gcloud init
 
 * When prompted to select an account, select option 2: _Log in with a new account_, and follow the instructions to authenticate
 * Enter your project id when prompted for it
-* Select the default region where resources should be created (us-central1)
+* Select the default region where resources should be created: {region}. This should be the region that the class will be delivered in.
 
 
 == Initial Configuration
 
-. Setup project-wide SSH key: the instructions to setup a project-wide SSH key are part of the Pivotal official documentation, and available http://docs.pivotal.io/pivotalcf/customizing/gcp-prepare-env.html#keys[here^].  _Please follow step 4 only_.
-
-+
 . Create a service account and download keyfile:
 +
 [source.terminal]
@@ -70,10 +68,16 @@ gcloud iam service-accounts keys create '{key_json_filename}' --iam-account 'ter
 gcloud projects add-iam-policy-binding {project_id} --member 'serviceAccount:terraform-service-account@{project_id}.iam.gserviceaccount.com' --role 'roles/editor'
 ----
 +
-NOTE: If you prefer, you can follow along http://docs.pivotal.io/pivotalcf/customizing/gcp-prepare-env.html#iam_account[here^] to create the account and download the key via the google cloud console web-based ui  ..but then don't forget to issue the third command above to add the IAM policy binding to give the account the role _roles/editor_
+NOTE: If you prefer, you can follow along http://docs.pivotal.io/pivotalcf/customizing/gcp-prepare-env.html#iam_account[here^] to create the account and download the key via the Google Cloud Console web-based UI, but don't forget to issue the third command above to add the IAM policy binding to give the account the role _roles/editor_
 
-. Enable access to three GCP APIs: Resource Manager API, Cloud DNS API, Identity & Access Management API.
-   See http://docs.pivotal.io/pivotalcf/customizing/gcp-prepare-env.html#enable_compute_resource_api[these instructions^] for how to do this for the Resource Manager API. Don't forget to also enable the Google Cloud DNS API, and Google Identity and Access Management API in a similar fashion.
+. Setup project-wide SSH key and enable access to GCP APIs.  The instructions for these tasks are part of the Pivotal official documentation (_Step 4: Create a Project-Wide SSH Keypair for Your Project_ and _Step 5: Enable Google Cloud APIs_), and are available http://docs.pivotal.io/pivotalcf/customizing/gcp-prepare-env.html#keys[here^].
+
++
+. Enable additional GCP APIs for the terraform script.  In addition to enabling the _Google Compute Engine API_ and the _Google Cloud Resource Manager API_ above, the terraform script requires that you also enable these additional APIs:
++
+* Google Cloud DNS API
+* Google Identity and Access Management (IAM) API
+
 
 == Prepare and run Terraform scripts
 
@@ -91,8 +95,8 @@ cd ~/terraforming-gcp
 You'll need to supply values for the following variables:
 
  - `project`: your project id ({project_id})
- - `region`: us-central1
- - `zones`: ["us-central1-a", "us-central1-b", "us-central1-c"]
+ - `region`: e.g. us-central1
+ - `zones`: e.g. ["us-central1-a", "us-central1-b", "us-central1-c"]
  - `env_name`: your username, e.g. {env_name}
  - `opsman_image_url`: https://storage.googleapis.com/ops-manager-us/pcf-gcp-1.9.2.tar.gz
 +
