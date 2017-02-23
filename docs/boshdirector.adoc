@@ -151,7 +151,7 @@ image::director-config-gcp.png[Director Config]
 +
 [.thumb]
 .Availability Zones
-image::create-availability-zones-gcp.png
+image::create-availability-zones-gcp.png[Availability Zones]
 
 
 . Add three availability zones based on your region,  These will be the same zones you put into your `terraform.tfvars` terraform script.  Click `Save` after entering each zone.
