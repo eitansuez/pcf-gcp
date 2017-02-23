@@ -1,20 +1,32 @@
-= Installing Bosh Director
+= Configuring Ops Manager Director
 Eitan Suez <esuez@pivotal.io>
 v0.1, 2017
 :project_id: {{project_id}}
 :domain_name: {{domain_name}}
 :env_name: {{env_name}}
 :director_ip_address: {{director_ip_address}}
+:region: {{region}}
 
+Estimated time:  30 minutes
+
+= Requirements
+
+Lab Requirements
+
+= What you will learn
+
+* How to configure and install Ops Manager Director
+
+= Exercises
 
 The terraform scripts we ran in the last lab created the Ops Manager VM.
 
 The two main tasks we will accomplish in this lab are:
 
-. setup access to Ops Manager, by selecting a username and password (and passphrase)
-. use the Ops Manager to configure the BOSH Director.
+. Setup access to Ops Manager, by selecting a username and password (and passphrase)
+. Use the Ops Manager to configure the Ops Manager Director (also referred to as the BOSH Director).
 
-Setting up the BOSH Director is a prerequisite step to installing Cloud Foundry.
+Setting up the Ops Manager Director is a prerequisite step to installing Pivotal Cloud Foundry.
 
 == DNS configuration
 
@@ -28,60 +40,232 @@ Click on the zone; you'll notice an NS-type entry for the subdomain, as shown be
 .Cloud DNS view of your hosted zone
 image::hosted_zone.png[Cloud DNS]
 
--> Communicate the value of the _Data_ column to your instructor (which should be a list of google name servers).
+-> Communicate the value of the _Data_ column to your instructor (which should be a list of Google name servers).  Your instructor will add these name servers to the top-level domain DNS record.
 
 Shortly after the NS record is created, you should be able to verify proper DNS resolution for any host under your subdomain using a client such as `dig` or `nslookup`.
 
 
 == Instructions
 
-The Ops Manager runs a web server that is accessible at https://pcf.{env_name}.{domain_name}/[^].
-
-. Open a web browser and visit that page.
-
-. follow the http://docs.pivotal.io/pivotalcf/customizing/gcp-om-config.html[Configuring Ops Manager^] instructions from the PCF documentation
-
-Make the following selections as you work through setting up the director:
+You can refer to the  http://docs.pivotal.io/pivotalcf/customizing/gcp-om-config.html[Configuring Ops Manager^] instructions from the PCF documentation as you complete this lab.  As a general guideline, the lab instructions will specify the parameters to override - otherwise you should accept default values.
 
 === Access Ops Manager
 
-Select the "internal authentication" method when setting up access to your Ops Manager.  Select a username, password, passphrase.
+The Ops Manager runs a web server that is accessible at https://pcf.{env_name}.{domain_name}/[^].
 
-=== GCP Config
+. Open a web browser and visit that page.
++
+[.thumb]
+.Ops Manager Home Page
+image::authentication-system.png[Ops Manager Home Page]
 
-On http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-om-config.html#gcp-config[this step^], just specify your project id ({project_id}) and press Save.
+. Select the *Internal Authentication* method when setting up access to your Ops Manager.
++
+[.thumb]
+.Internal Authentication
+image::authentication-details.png[Internal Authentication]
 
-NOTE:  if you encounter an error message stating that your ops manager service account cannot see your GCP project, it is an indication of a possible bug whereby the service account was created with insufficient permissions.  Resolve this issue by navigating in your Google Cloud Console to the IAM & Admin -> IAM section.  Configure the service account named _{env_name} Ops Manager VM Service Account_ by adding the role _Compute Security Admin_ (don't foget to press "Save").
++
+Fill in the authentication details.  Use the parameter values specified in the table below, so that your instructor is able to access your installation for troubleshooting purposes if necessary.
+
++
+.Internal Authentication
+|===
+|Field|Value
+
+|Username
+|admin
+
+|Password
+|Pivotal2017
+
+|Decryption passphrase
+|Pivotal2017
+|===
+
++
+Accept the End User License Agreement and click *Setup Authentication*.  Setup takes a few moments.
+
+=== Configuring Ops Manager Director
+
+Log into Ops Manager.  After logging in you should see a screen that looks like this:
+
+[.thumb]
+.Ops Manager Dashboard
+image::orange-director-gcp.png[Ops Manager Dashboard]
+
+==== Google Cloud Platform Config
+
+. In Ops Manager, click on the `Google Cloud Platform` tile (which should be orange).  This will take you to the `Google Config` section of the tile.
+
++
+[.thumb]
+.Google Cloud Platform
+image::gcp-config.png[Google Cloud Platform]
+
+. As per the http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-om-config.html#gcp-config[documentation^], enter the following values for the specified fields, and accept defaults for all other fields.  Then click `Save`.
+
++
+NOTE:  If you encounter an error message stating that your ops manager service account cannot see your GCP project, it is an indication of a possible bug whereby the service account was created with insufficient permissions.  Resolve this issue by navigating in your Google Cloud Console to the IAM & Admin -> IAM section.  Configure the service account named _{env_name} Ops Manager VM Service Account_ by adding the role _Compute Security Admin_ (don't foget to press "Save").  If you don't see the _{env_name} Ops Manager VM Service Account_ service account in the IAM section, you can add the required permissions by executing the following command: `gcloud projects add-iam-policy-binding {project_id} --member 'serviceAccount:{env_name}-opsman@{project_id}.iam.gserviceaccount.com' --role 'roles/editor'`.  Then click `Save` again in the Ops Manager web UI.
+
++
+.Google Cloud Platform Config
+|===
+|Field|Value
+
+|Project ID
+|{project_id}
+|===
 
 === Director Config
 
-See http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-om-config.html#director-config[instructions section^].
+. Browse to the `Director Config` section (left margin).
 
-. Enable VM Resurrector plugin (check)
-. Enable _post deploy scripts_ (check)
-. Skip the pager duty and email plugins configuration
++
+[.thumb]
+.Director Config
+image::director-config-gcp.png[Director Config]
 
-Press _Save_.
+. As per the  http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-om-config.html#director-config[documentation^], enter the following values for the specified fields, and accept defaults for all other fields.  Then click `Save`.
+
++
+.Director Config
+|===
+|Field|Value
+
+|NTP
+|169.254.169.254
+
+|Enable VM Resurrector Plugin
+|Checked
+
+|Enable Post Deploy Scripts
+|Checked
+
+|===
 
 === Create Availability Zones
 
-See http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-om-config.html#az[instructions section^].
+. Review http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-om-config.html#az[availability zones^].  Browse to the `Create Availability Zones` section (left margin).
 
-Create three availability zones (e.g. us-central1-a, us-central1-b, us-central1-c).
++
+[.thumb]
+.Availability Zones
+image::create-availability-zones-gcp.png
 
+
+. Add three availability zones based on your region,  These will be the same zones you put into your `terraform.tfvars` terraform script.  Click `Save` after entering each zone.
+
++
 [.thumb]
 .Availability Zone Configuration
-image::az_config.png[Availability Zone Configiuration]
+image::az_config.png[Availability Zone Configuration]
 
-Press _Save_.
-
++
+**Question** According to the documentation of AZs, how many availability zones _should_ you create? Why?
 
 === Create Networks
 
-See http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-om-config.html#network[instructions section^].
+. Review http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-om-config.html#network[networks^].  Browse to the `Create Networks` section (left margin).  Pay particular attention to the _Google Network Name_ format.  You can obtain the network subnets from the GCP web console:  select Networks -> Network, and look for your `{env_name}-pcf-network`.  You should see 3 subnetworks created: `{env_name}-ert-subnet`, `{env_name}-management-subnet`, and `{env_name}-services-subnet`.
 
-Create three networks to match the three subnets that were created by the terraform scripts.  Here's an example configuration for the elastic runtime network:
++
+[.thumb]
+.Create Networks
+image::create-networks-gcp.png[Create Networks]
 
+. Add three networks to match the three subnets that were created by the terraform scripts.
+
++
+.Management Network
+|===
+|Field|Value
+
+|Name
+|gcp-management-network
+
+|Google Network Name
+|{env_name}-pcf-network/{env_name}-management-subnet/{region}
+
+|CIDR
+|10.0.0.0/24
+
+|Reserved IP Ranges
+|10.0.0.1-10.0.0.9
+
+|DNS
+|10.0.0.1
+
+|Gateway
+|10.0.0.1
+
+|Availability Zones
+|Check all zones
+
+|===
+
++
+.Elastic Runtime (ERT) Network
+|===
+|Field|Value
+
+|Name
+|gcp-ert-network
+
+|Google Network Name
+|{env_name}-pcf-network/{env_name}-ert-subnet/{region}
+
+|CIDR
+|10.0.4.0/22
+
+|Reserved IP Ranges
+|10.0.4.1-10.0.4.9
+
+|DNS
+|10.0.4.1
+
+|Gateway
+|10.0.4.1
+
+|Availability Zones
+|Check all zones
+
+|===
+
++
+.Service Network
+|===
+|Field|Value
+
+|Name
+|gcp-services-network
+
+|Service Network
+|Checked
+
+|Google Network Name
+|{env_name}-pcf-network/{env_name}-services-subnet/{region}
+
+|CIDR
+|10.0.8.0/22
+
+|Reserved IP Ranges
+|10.0.8.1-10.0.8.9
+
+|DNS
+|10.0.8.1
+
+|Gateway
+|10.0.8.1
+
+|Availability Zones
+|Check all zones
+
+|===
+
++
+Here's an example configuration for the elastic runtime network:
+
++
 [.thumb]
 .Example Network Configuration: Elastic Runtime
 image::ert_network_config.png[Example Network Configuration,width="50%"]
@@ -89,53 +273,74 @@ image::ert_network_config.png[Example Network Configuration,width="50%"]
 
 === Assign AZs and Newtorks
 
-. Select the `{env_name}-ops-manager-subnet` in http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-om-config.html#assign-azs[step 6^]:  that's the subnet in which the bosh director should be installed
+. Browse to the `Assign AZs and Networks` section (left margin).
 
-Press _Save_.
++
+[.thumb]
+.Assign AZs and Networks
+image::assign-azs-networks-gcp.png[Assign AZs and Networks]
+
+. Enter the following values for the specified fields, and accept defaults for all other fields.  Then click `Save`.
+
++
+.Assign AZs and Networks
+|===
+|Field|Value
+
+|Singleton Availability Zone
+|Select the first value in the dropdown
+
+|Network
+|gcp-management-network
+
+|===
 
 === Apply Changes
 
-Go back to the installation dashboard and click _Apply Changes_.  It may take up to ten minutes for this to finish. This may be a good time to stretch and grab a cup of coffee.
+. Be sure all tabs on the left have a green check mark and that the tile is green on the dashboard before continuing to the next exercise.
 
-In the Google Cloud Console, visit the _Compute Engine -> VM Instances_ section and observe that a new VM will have been created for the BOSH Director.
+. **Ask your instructor to validate your settings.**
 
-Congratulations, you have now deployed the BOSH Director.
+. Browse to the `Installation Dashboard`.  Then click `Apply Changes` to create an instance of Ops Manager Director.
 
-== Post-Installation
-
-. in the Ops Manager, select the GCP _tile_.  We need to retrieve some information:
-.. the Ops Manager IP address: navigate to the _Status_ tab, note the IP address for the Ops Manager Director
-.. navigate to the _Credentials_ tab, click the link to the director credentials, note the identity and password displayed in the json response.
-
-. verify that you can ssh into the Ops Manager with:
 +
-[source.terminal]
-----
-gcloud compute ssh ubuntu@{{env_name}}-ops-manager
-----
-+
-NOTE: The above command dynamically creates a key pair for logging in to the VM
-+
-The bosh client is pre-installed on Ops Manager VM.  For security, the bosh director VM is usually not made accessible from the outside world.  The Ops Manager VM serves as a bastion VM from which we can communicate with the bosh director.
+[.thumbs]
+.Apply Changes
+image::director-apply-changes-gcp.png[Apply Changes]
 
-. Target, and login to the bosh director:
 +
-[source.terminal]
-----
-bosh --ca-cert /var/tempest/workspaces/default/root_ca_certificate target {{director_ip_address}}
-----
-+
-When prompted to log in, enter `director` for the user name, and the previously noted secret for the password.
+The installation should take about 10 minutes. You can view the log details as the installation is happening (`Show verbose output`).
 
-. Invoke the following command:
-+
-[source.terminal]
-----
-bosh deployments
-----
-+
-The response should be empty at the moment, as we have not yet used the bosh director to deploy anything.
+. When the installation is successful, you should have receive a message saying "Changes Applied...".
 
-You may now log out of the Ops Manager.
++
+[.thumbs]
+.Changes Applied
+image::director-success-gcp.png[Changes Applied]
 
-Congratulations, you have verified the proper functioning of the bosh director and are now ready to move on to installing the elastic runtime (our next lab).
++
+You can ignore the message about exporting a backup of the installation for now.  That will be the topic of another lab.  Just keep in mind that it is good to do after every deployment.
+
+. When the installation is complete, click on `Changelog` to view the installation logs.
+
++
+[.thumbs]
+.Change Log
+image::change-log-gcp.png[Change Log]
+
+. Explore the `Ops Manager Director` tile.  Review the `Status` and `Credentials` tabs.
+
++
+[.thumbs]
+.Director Status
+image::director-status-gcp.png[Director Status]
+
++
+[.thumbs]
+.Credentials
+image::director-credentials-gcp.png[Credentials]
+
++
+In the Google Cloud Console, visit the _Compute Engine -> VM Instances_ section and observe that a new VM will have been created for the Ops Manager (BOSH) Director.
+
+**Congratulations!** You have successfully installed the Ops Manager Director.
