@@ -3,7 +3,7 @@ This repository relates to the development of course materials for the PCF Admin
 To generate the course content as html:
 
 ----
-gradle clean asciidoctor
+gradle asciidoctor
 ----
 
 After reviewing and modifying the `manifest.yml` file, you can publish the html version of the course contents to PCF with the following command:
