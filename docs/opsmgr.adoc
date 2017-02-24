@@ -46,7 +46,7 @@ gcloud init
 
 * When prompted to select an account, select option 2: _Log in with a new account_, and follow the instructions to authenticate
 * Enter your project id when prompted for it
-* Select the default region where resources should be created: {region}. This should be the region that the class will be delivered in.
+* Select the default region where resources should be created: {region}. This should be the region that the class will be delivered in.  A list of GCP regions and zones can be found https://cloud.google.com/compute/docs/regions-zones/regions-zones[here^].
 
 
 == Initial Configuration
