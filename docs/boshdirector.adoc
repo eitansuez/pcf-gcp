@@ -51,7 +51,7 @@ Select the "internal authentication" method when setting up access to your Ops M
 
 On http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-om-config.html#gcp-config[this step^], just specify your project id ({project_id}) and press Save.
 
-NOTE:  if you encounter an error message stating that your ops manager service account cannot see your GCP project, it is an indication of a possible bug whereby the service account was created with insufficient permissions.  Resolve this issue by navigating in your Google Cloud Console to the IAM & Admin -> IAM section.  Configure the service account named _{env_name} Ops Manager VM Service Account_ by adding the role _Compute Security Admin_ (don't foget to press "Save").
+NOTE:  if you encounter an error message stating that your ops manager service account cannot see your GCP project, it is an indication of a possible bug whereby the service account was created with insufficient permissions.  Resolve this issue by navigating in your Google Cloud Console to the IAM & Admin -> IAM section.  Configure the service account named _{env_name} Ops Manager VM Service Account_ by adding the role _Compute Security Admin_ (don't forget to press "Save").
 
 === Director Config
 
