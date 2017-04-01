@@ -28,7 +28,7 @@ Click on the zone; you'll notice an NS-type entry for the subdomain, as shown be
 .Cloud DNS view of your hosted zone
 image::hosted_zone.png[Cloud DNS]
 
--> Communicate the value of the _Data_ column to your instructor (which should be a list of google name servers).
+Communicate the value of the _Data_ column to your instructor (which should be a list of google name servers).
 
 Shortly after the NS record is created, you should be able to verify proper DNS resolution for any host under your subdomain using a client such as `dig` or `nslookup`.
 
