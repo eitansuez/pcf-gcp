@@ -49,13 +49,13 @@ Select the "internal authentication" method when setting up access to your Ops M
 
 === GCP Config
 
-On http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-om-config.html#gcp-config[this step^], just specify your project id ({project_id}) and press Save.
+On http://docs.pivotal.io/pivotalcf/customizing/gcp-om-config.html#gcp-config[this step^], just specify your project id ({project_id}) and press Save.
 
 NOTE:  if you encounter an error message stating that your ops manager service account cannot see your GCP project, it is an indication of a possible bug whereby the service account was created with insufficient permissions.  Resolve this issue by navigating in your Google Cloud Console to the IAM & Admin -> IAM section.  Configure the service account named _{env_name} Ops Manager VM Service Account_ by adding the role _Compute Security Admin_ (don't forget to press "Save").
 
 === Director Config
 
-See http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-om-config.html#director-config[instructions section^].
+See http://docs.pivotal.io/pivotalcf/customizing/gcp-om-config.html#director-config[instructions section^].
 
 . Enable VM Resurrector plugin (check)
 . Enable _post deploy scripts_ (check)
@@ -65,7 +65,7 @@ Press _Save_.
 
 === Create Availability Zones
 
-See http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-om-config.html#az[instructions section^].
+See http://docs.pivotal.io/pivotalcf/customizing/gcp-om-config.html#az[instructions section^].
 
 Create three availability zones (e.g. us-central1-a, us-central1-b, us-central1-c).
 
@@ -78,7 +78,7 @@ Press _Save_.
 
 === Create Networks
 
-See http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-om-config.html#network[instructions section^].
+See http://docs.pivotal.io/pivotalcf/customizing/gcp-om-config.html#network[instructions section^].
 
 Create three networks to match the three subnets that were created by the terraform scripts.  Here's an example configuration for the elastic runtime network:
 
@@ -89,7 +89,7 @@ image::ert_network_config.png[Example Network Configuration,width="50%"]
 
 === Assign AZs and Newtorks
 
-. Select the `{env_name}-ops-manager-subnet` in http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-om-config.html#assign-azs[step 6^]:  that's the subnet in which the bosh director should be installed
+. Select the `{env_name}-ops-manager-subnet` in http://docs.pivotal.io/pivotalcf/customizing/gcp-om-config.html#assign-azs[step 6^]:  that's the subnet in which the bosh director should be installed
 
 Press _Save_.
 

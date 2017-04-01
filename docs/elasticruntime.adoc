@@ -7,11 +7,11 @@ v0.1, 2017
 
 The bosh director installed in the previous lab is the means by which the Ops Manager will now deploy Cloud Foundry.  The main component of Cloud Foundry is known as the Elastic Runtime.
 
-The general instructions for installing the Elastic Runtime on GCP are available http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html[here^].  Follow the instructions below, which reference specific subsections from the official Pivotal instructions.
+The general instructions for installing the Elastic Runtime on GCP are available http://docs.pivotal.io/pivotalcf/customizing/gcp-er-config.html[here^].  Follow the instructions below, which reference specific subsections from the official Pivotal instructions.
 
 == Obtain and Upload Elastic Runtime
 
-. Follow http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#download-er[Steps 1 and 2^] to download the elastic runtime tile and then to add (or import) the tile into Ops Manager.
+. Follow http://docs.pivotal.io/pivotalcf/customizing/gcp-er-config.html#download-er[Steps 1 and 2^] to download the elastic runtime tile and then to add (or import) the tile into Ops Manager.
 
 NOTE: The Elastic Runtime product is a fairly large file, in excess of 5GB.  The process of downloading the product, and then uploading it to the Ops Manager can take time.  It is often faster to ssh to the Ops Manager, and download the tile directly onto that VM, and then instruct Ops Manager to ingest that local file.  _TODO: provide instructions for how to do that._
 
@@ -46,7 +46,7 @@ The terraform script we ran created three availability zones for us (also abbrev
 
 Be sure to click _Save_.
 
-General instructions for this section can be found in http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#assign-az[Step 3^] of the deployment instructions.
+General instructions for this section can be found in http://docs.pivotal.io/pivotalcf/customizing/gcp-er-config.html#assign-az[Step 3^] of the deployment instructions.
 
 == Domains
 
@@ -55,7 +55,7 @@ Next specify your system and apps domains as follows:
 . System Domain:  sys.{env_name}.{domain_name}
 . Apps Domain: apps.{env_name}.{domain_name}
 
-And click _Save_.  These instructions correspond to http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#er-domain-config[Step 5^].
+And click _Save_.  These instructions correspond to http://docs.pivotal.io/pivotalcf/customizing/gcp-er-config.html#er-domain-config[Step 5^].
 
 .What do these settings control?
 ****
@@ -68,7 +68,7 @@ Finally, if you push an app named `hello-world`, its route will by default be he
 
 == Networking
 
-To configure networking, follow http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#networking[Step 6^] from the official instructions for GCP.
+To configure networking, follow http://docs.pivotal.io/pivotalcf/customizing/gcp-er-config.html#networking[Step 6^] from the official instructions for GCP.
 
 Essentially, you'll:
 
@@ -79,7 +79,7 @@ Essentially, you'll:
 
 == Application Security Groups
 
-Complete http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#app-security[Step 9^].
+Complete http://docs.pivotal.io/pivotalcf/customizing/gcp-er-config.html#app-security[Step 9^].
 
 == Internal MySQL
 
@@ -95,13 +95,13 @@ Four buckets should have been created for you by the terraform script:  {env_nam
 .Google Cloud Storage buckets listing
 image::gcs.png[Google Cloud Storage]
 
-Follow the instructions in http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#filestore[Step 13^] from the official instructions to use these buckets as the storage location for buildpacks, droplets, etc..
+Follow the instructions in http://docs.pivotal.io/pivotalcf/customizing/gcp-er-config.html#filestore[Step 13^] from the official instructions to use these buckets as the storage location for buildpacks, droplets, etc..
 
 Don't forget to click _Save_.
 
 == Resource Config
 
-The configuration of the _Resource Config_ tab is described in http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#config-lb[Step 21^].
+The configuration of the _Resource Config_ tab is described in http://docs.pivotal.io/pivotalcf/customizing/gcp-er-config.html#config-lb[Step 21^].
 
 In summary, three text fields in the column labeled "Load Balancers" must be filled, one for each of the rows labeled _Router_, _Diego Brain_, and (optionally) _TCP Router_, as follows:
 
@@ -132,11 +132,11 @@ Click _Save_.
 
 == Stemcell
 
-If necessary, follow the instructions in http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#stemcell[Step 22^] to upload Stemcell to the bosh director.  In some cases, the bosh director already has the Stemcell in which case no action is necessary on your part.
+If necessary, follow the instructions in http://docs.pivotal.io/pivotalcf/customizing/gcp-er-config.html#stemcell[Step 22^] to upload Stemcell to the bosh director.  In some cases, the bosh director already has the Stemcell in which case no action is necessary on your part.
 
 == Complete the Installation
 
-Finally, complete the installation, as instructed http://docs.pivotal.io/pivotalcf/1-9/customizing/gcp-er-config.html#complete[here^].
+Finally, complete the installation, as instructed http://docs.pivotal.io/pivotalcf/customizing/gcp-er-config.html#complete[here^].
 
 WARNING: At this point, it would be wise to get your instructor to validate all your settings _before_ you click _Apply Changes_.
 
