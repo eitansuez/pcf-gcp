@@ -26,7 +26,7 @@ Your instructor has prepared the following on your behalf:
 To install PCF on GCP, you'll need the following items:
 
 - the https://cloud.google.com/sdk/[Google Cloud SDK^], which provides the `gcloud` CLI
-- the use of a Pivotal project containing Terraform scripts designed for PCF, named https://github.com/pivotal-cf/terraforming-gcp[terraforming-gcp^].  This course is based on  https://github.com/pivotal-cf/terraforming-gcp/releases/tag/v0.6.0[release version 0.6.0^]
+- the use of a Pivotal project containing Terraform scripts designed for PCF, named https://github.com/pivotal-cf/terraforming-gcp[terraforming-gcp^].  This course has been verified to work with https://github.com/pivotal-cf/terraforming-gcp/releases/tag/v0.7.0[release version 0.7.0^]
 - Hashicorp's https://www.terraform.io/[Terraform^].  Be sure to use https://releases.hashicorp.com/terraform/0.8.4/[version 0.8.4^]
 
 === Instructions
@@ -34,7 +34,7 @@ To install PCF on GCP, you'll need the following items:
 Using the above links:
 
 . Download and install the Google Cloud SDK (you can verify the installation with the command `gcloud --version`)
-. Download and unzip the terraforming-gcp project, release version 0.6.0, to a subfolder of your home directory
+. Download and unzip the terraforming-gcp project, release version 0.7.0, to a subfolder of your home directory
 . Download and install Hashicorp's Terraform, version 0.8.4 (you can verify the installation with the command `terraform --version`)
 
 Log in to google cloud project from the command line, using the gcloud sdk
