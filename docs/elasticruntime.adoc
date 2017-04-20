@@ -77,10 +77,6 @@ Essentially, you'll:
 * make sure to _disable SSL certificate verification_, and finally
 * click _Save_ to apply changes.
 
-== Application Security Groups
-
-Complete http://docs.pivotal.io/pivotalcf/customizing/gcp-er-config.html#app-security[Step 9^].
-
 == Internal MySQL
 
 For this tab, simply enter your email address in the required _E-mail address_ field and click _Save_.  Leave other options unchanged.
@@ -158,14 +154,3 @@ Congratulations, you have installed Pivotal Elastic Runtime.
 . Explore the `Credentials` tab in the `Pivotal Elastic Runtime` tile. It contains the username and auto-generated passwords that are used for logging into components.
 
 . Explore the `Logs` tab in the `Pivotal Elastic Runtime` tile. This contain logs obtained by clicking on the Logs icon under the `Status` tab.
-
-=== Disable Errands
-
-You may have noticed that, after elastic runtime installs, a number of errands are run, such as the installation of the apps manager.  Technically these errands don't need to run each time we modify the configuration of the elastic runtime (for example to increase the number of Diego Cells that we wish to deploy).
-
-Disabling these errands after a successful installation can save a significant amount of time, and so we recommend that you do so in the context of this course, as follows:
-
-. Click on the Elastic Runtime Tile in the Ops manager
-. Select the "tab" titled "Errands"
-. Uncheck each of the errands listed
-. Click _Save_ and apply changes back at the installation dashboard
