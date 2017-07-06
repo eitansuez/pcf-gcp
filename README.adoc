@@ -6,13 +6,16 @@ To generate the course content as html:
 gradle asciidoctor
 ----
 
-After reviewing and modifying the `manifest.yml` file, you can publish the html version of the course contents to PCF with the following command:
+The course will be written to `build/html5`
+
+After reviewing and modifying the `manifest.yml` file, you can publish the course to PCF with the following command:
 
 ----
+cd build/html5
 cf push
 ----
 
-At the moment, a version of this course is published to https://pcfadmin-gcp.cfapps.io/[this url^].
+A version of this course is published to https://pcfadmin-gcp.cfapps.io/[this url^].
 
 Thanks.
 / Eitan
