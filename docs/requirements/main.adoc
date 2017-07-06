@@ -5,7 +5,7 @@
 The installation of PCF on GCP requires the following client software, which students are instructed to install on their machines:
 
 - the https://cloud.google.com/sdk/[Google Cloud SDK^], which provides the `gcloud` CLI
-- the use of a Pivotal project containing Terraform scripts designed for PCF, named https://github.com/pivotal-cf/terraforming-gcp[terraforming-gcp^].  This course is based on  https://github.com/pivotal-cf/terraforming-gcp/releases/tag/v0.6.0[release version 0.6.0^]
+- the use of a Pivotal project containing Terraform scripts designed for PCF, named https://github.com/pivotal-cf/terraforming-gcp[terraforming-gcp^].  This course is based on  https://github.com/pivotal-cf/terraforming-gcp/releases/tag/v0.7.0[release version 0.7.0^]
 - Hashicorp's https://www.terraform.io/[Terraform^].  Be sure to use https://releases.hashicorp.com/terraform/0.8.4/[version 0.8.4^]
 
 === Domain name
