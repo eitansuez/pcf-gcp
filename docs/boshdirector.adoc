@@ -123,16 +123,23 @@ The bosh client is pre-installed on Ops Manager VM.  For security, the bosh dire
 +
 [source.terminal]
 ----
-bosh --ca-cert /var/tempest/workspaces/default/root_ca_certificate target {{director_ip_address}}
+bosh --ca-cert=/var/tempest/workspaces/default/root_ca_certificate --environment={{director_ip_address}} log-in
 ----
 +
 When prompted to log in, enter `director` for the user name, and the previously noted secret for the password.
+
+. For convenience, let's alias that target environment as 'pcf':
++
+[source.terminal]
+----
+bosh --ca-cert=/var/tempest/workspaces/default/root_ca_certificate --environment={{director_ip_address}} alias-env pcf
+----
 
 . Invoke the following command:
 +
 [source.terminal]
 ----
-bosh deployments
+bosh --environment=pcf deployments
 ----
 +
 The response should be empty at the moment, as we have not yet used the bosh director to deploy anything.
