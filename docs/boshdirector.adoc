@@ -119,21 +119,21 @@ NOTE: The above command dynamically creates a key pair for logging in to the VM
 +
 The bosh client is pre-installed on Ops Manager VM.  For security, the bosh director VM is usually not made accessible from the outside world.  The Ops Manager VM serves as a bastion VM from which we can communicate with the bosh director.
 
-. Target, and login to the bosh director:
-+
-[source.terminal]
-----
-bosh --ca-cert=/var/tempest/workspaces/default/root_ca_certificate --environment={{director_ip_address}} log-in
-----
-+
-When prompted to log in, enter `director` for the user name, and the previously noted secret for the password.
-
-. For convenience, let's alias that target environment as 'pcf':
+. First, create an alias for the bosh director we wish to target.  Let's call it 'pcf':
 +
 [source.terminal]
 ----
 bosh --ca-cert=/var/tempest/workspaces/default/root_ca_certificate --environment={{director_ip_address}} alias-env pcf
 ----
+
+. Login to the bosh director:
++
+[source.terminal]
+----
+bosh --environment=pcf log-in
+----
++
+When prompted, enter `director` for the user name, and the previously noted secret for the password.
 
 . Invoke the following command:
 +
